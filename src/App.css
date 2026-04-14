@@ -132,6 +132,7 @@
 .nav__social-link { display:flex; align-items:center; justify-content:center; width:32px; height:32px; color:var(--text-mid); transition:color .2s, transform .2s; text-decoration:none; }
 .nav__social-link:hover { color:var(--green-600); transform:scale(1.1); }
 .nav--scrolled .nav__social-link { color:var(--text-dark); }
+.nav__social-img { width:18px; height:18px; display:block; }
 .nav__socials-mobile { display:none; }
 .nav__amazon-logo { background:#000; padding:4px; border-radius:4px; }
 
