@@ -1,6 +1,13 @@
 import { Resend } from 'resend';
+import { createClient } from '@supabase/supabase-js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -14,8 +21,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Send email via Resend
     const data = await resend.emails.send({
-      from: 'ZeeVeez <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM || 'ZeeVeez <onboarding@resend.dev>',
       to: email,
       subject: 'Welcome to ZeeVeez - Gummy Snacks Launching Soon!',
       html: `
@@ -103,9 +111,43 @@ export default async function handler(req, res) {
       `,
     });
 
-    return res.status(200).json({ success: true, data });
+    // Save email submission to Supabase
+    const { data: saveData, error: saveError } = await supabase
+      .from('email_signups')
+      .insert([
+        {
+          email: email,
+          sent_at: new Date().toISOString(),
+          status: 'sent',
+          resend_id: data.id
+        }
+      ]);
+
+    if (saveError) {
+      console.error('Supabase save error:', saveError);
+      // Still return success for email, even if Supabase save fails
+    }
+
+    return res.status(200).json({ success: true, data, saved: !saveError });
   } catch (error) {
-    console.error('Resend error:', error);
+    console.error('Error:', error);
+    
+    // Try to save error to Supabase for debugging
+    try {
+      await supabase
+        .from('email_signups')
+        .insert([
+          {
+            email: email,
+            sent_at: new Date().toISOString(),
+            status: 'failed',
+            error_message: error.message
+          }
+        ]);
+    } catch (logError) {
+      console.error('Failed to log error to Supabase:', logError);
+    }
+    
     return res.status(500).json({ error: error.message });
   }
 }
