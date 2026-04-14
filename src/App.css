@@ -107,10 +107,10 @@
 .nav--scrolled { background:rgba(255,255,255,0.82); backdrop-filter:blur(16px) saturate(1.8); -webkit-backdrop-filter:blur(16px) saturate(1.8); box-shadow:0 1px 0 rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.04); }
 .nav__inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:72px; transition:height .3s; }
 .nav--scrolled .nav__inner { height:60px; }
-.nav__logo { font-size:26px; font-weight:800; text-decoration:none; color:var(--text-dark); letter-spacing:-0.5px; }
-.logo-z { color:var(--green-600); }
-.logo-v { color:var(--green-500); }
-.logo-tm { font-size:10px; color:var(--text-light); vertical-align:super; }
+.nav__logo { text-decoration:none; display:flex; align-items:center; }
+.nav__logo-img { height:40px; width:auto; transition:opacity .2s; }
+.nav__logo-img:hover { opacity:0.85; }
+.nav--scrolled .nav__logo-img { height:34px; }
 .nav__links { display:flex; align-items:center; gap:32px; }
 .nav__links a { text-decoration:none; color:var(--text-mid); font-size:15px; font-weight:600; transition:color .2s; position:relative; }
 .nav__links a:not(.nav__cta)::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--green-500); border-radius:2px; transition:width .25s ease; }
@@ -146,10 +146,7 @@
 .hero__badge { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.75); backdrop-filter:blur(8px); border:1px solid var(--green-200); padding:8px 20px; border-radius:100px; font-size:14px; font-weight:700; color:var(--green-700); margin-bottom:24px; }
 .hero__badge-dot { width:8px; height:8px; background:var(--green-500); border-radius:50%; animation:pulseStar 2s ease infinite; }
 
-.hero h1 { margin-bottom:20px; }
-.hero__brand { display:block; font-size:clamp(44px, 6vw, 76px); font-weight:800; color:var(--text-dark); line-height:1.05; letter-spacing:-2.5px; }
-.hero__brand sup { font-size:0.3em; vertical-align:super; color:var(--text-light); }
-.hero__tagline { display:block; font-size:clamp(20px, 2.5vw, 28px); font-weight:700; background:linear-gradient(135deg, var(--green-500) 0%, var(--green-400) 50%, var(--honey) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:-0.5px; }
+.hero__logo-img { max-width:clamp(260px, 40vw, 420px); height:auto; margin-bottom:20px; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.08)); }
 .hero__sub { font-size:17px; line-height:1.7; color:var(--text-light); max-width:480px; margin-bottom:28px; }
 .hero__actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
 .hero__trust { display:flex; gap:16px; flex-wrap:wrap; }
@@ -166,12 +163,11 @@
 .gummy-lg { position:relative; width:90px; height:110px; border-radius:46px 46px 32px 32px; display:flex; align-items:center; justify-content:center; cursor:default; transition:transform .4s cubic-bezier(0.34,1.56,0.64,1); }
 .gummy-lg:hover { transform:translateY(-14px) scale(1.08)!important; }
 .gummy-lg--green { background:linear-gradient(170deg, #6ee7b7, var(--green-500)); box-shadow:0 12px 30px rgba(34,197,94,0.3), inset 0 -4px 12px rgba(0,0,0,0.08); animation:floatSlow 4s ease-in-out infinite 0.5s; }
-.gummy-lg--honey { background:linear-gradient(170deg, #fde68a, var(--honey)); box-shadow:0 12px 30px rgba(245,158,11,0.3), inset 0 -4px 12px rgba(0,0,0,0.08); width:110px; height:134px; border-radius:56px 56px 38px 38px; z-index:2; animation:float 3.5s ease-in-out infinite; }
-.gummy-lg--white { background:linear-gradient(170deg, #fefce8, #fef3c7); box-shadow:0 12px 30px rgba(253,224,71,0.25), inset 0 -4px 12px rgba(0,0,0,0.05); animation:floatSlow 4.2s ease-in-out infinite 1s; border:2px solid rgba(253,224,71,0.4); }
+.gummy-lg--center { width:110px; height:134px; border-radius:56px 56px 38px 38px; z-index:2; animation:float 3.5s ease-in-out infinite; }
 .gummy-lg__shine { position:absolute; top:14px; left:18px; width:22px; height:28px; background:rgba(255,255,255,0.5); border-radius:50%; filter:blur(3px); }
-.gummy-lg--honey .gummy-lg__shine { left:24px; width:26px; height:32px; }
+.gummy-lg--center .gummy-lg__shine { left:24px; width:26px; height:32px; }
 .gummy-lg__face { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding-top:12px; width:54px; }
-.gummy-lg--honey .gummy-lg__face { width:62px; gap:14px; }
+.gummy-lg--center .gummy-lg__face { width:62px; gap:14px; }
 .gummy-lg__eye { width:9px; height:11px; background:rgba(0,0,0,0.45); border-radius:50%; }
 .gummy-lg__mouth { width:18px; height:9px; border-bottom:3px solid rgba(0,0,0,0.35); border-radius:0 0 50% 50%; margin-top:-4px; }
 .gummy-lg__mouth--big { width:22px; height:11px; background:rgba(0,0,0,0.12); border-bottom:3px solid rgba(0,0,0,0.3); }
@@ -413,10 +409,9 @@
 .foot__inner { max-width:1100px; margin:0 auto; }
 .foot__top { display:flex; justify-content:space-between; gap:60px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:32px; }
 .foot__brand { max-width:300px; }
-.foot__logo { color:#fff!important; margin-bottom:4px; display:inline-block; }
-.foot__logo .logo-z { color:var(--green-400); }
-.foot__logo .logo-v { color:var(--green-300); }
-.foot__sub { font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:4px; font-weight:600; }
+.foot__logo { display:inline-block; margin-bottom:8px; }
+.foot__logo-img { height:48px; width:auto; filter:brightness(0) invert(1); opacity:0.9; transition:opacity .2s; }
+.foot__logo-img:hover { opacity:1; }
 .foot__brand > p { font-size:14px; color:rgba(255,255,255,0.4); line-height:1.6; }
 .foot__texas { display:flex; align-items:center; gap:8px; margin-top:16px; font-size:13px; color:rgba(255,255,255,0.6); font-weight:600; }
 .foot__texas-star { color:var(--honey); }
@@ -445,7 +440,7 @@
   .hero__trust { justify-content:center; }
   .hero__gummy-scene { width:280px; height:280px; }
   .gummy-lg { width:72px; height:88px; }
-  .gummy-lg--honey { width:90px; height:108px; }
+  .gummy-lg--center { width:90px; height:108px; }
   .about__inner { grid-template-columns:1fr; gap:48px; }
   .about__img-wrap { width:300px; height:300px; }
   .about__tree { width:120px; height:200px; }

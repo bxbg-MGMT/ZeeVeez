@@ -130,7 +130,7 @@ function App() {
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
         <div className="nav__inner">
           <a href="#" className="nav__logo">
-            <span className="logo-z">Zee</span><span className="logo-v">Veez</span><sup className="logo-tm">&trade;</sup>
+            <img src="/logo.png" alt="ZeeVeez™ Gummy Snacks" className="nav__logo-img" />
           </a>
           <button className={`nav__burger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
             <span /><span /><span />
@@ -164,10 +164,7 @@ function App() {
               <span className="hero__badge-dot" />
               One Flavor Says It All
             </div>
-            <h1>
-              <span className="hero__brand">ZeeVeez<sup>&trade;</sup></span>
-              <span className="hero__tagline">Gummy Snacks</span>
-            </h1>
+            <img src="/logo.png" alt="ZeeVeez™ Gummy Snacks" className="hero__logo-img" />
             <p className="hero__sub">
               ZeeVeez White Honey Apple signature gummy snack is so delish
               we bet you can't have just one. All natural, proudly made in
@@ -197,7 +194,7 @@ function App() {
                   <div className="gummy-lg__mouth" />
                 </div>
               </div>
-              <div className="gummy-lg gummy-lg--honey">
+              <div className="gummy-lg gummy-lg--green gummy-lg--center">
                 <div className="gummy-lg__shine" />
                 <div className="gummy-lg__face">
                   <div className="gummy-lg__eye" /><div className="gummy-lg__eye" />
@@ -205,7 +202,7 @@ function App() {
                 </div>
                 <div className="gummy-lg__crown">&#9733;</div>
               </div>
-              <div className="gummy-lg gummy-lg--white">
+              <div className="gummy-lg gummy-lg--green">
                 <div className="gummy-lg__shine" />
                 <div className="gummy-lg__face">
                   <div className="gummy-lg__eye" /><div className="gummy-lg__eye" />
@@ -603,10 +600,9 @@ function App() {
         <div className="foot__inner">
           <div className="foot__top">
             <div className="foot__brand">
-              <a href="#" className="nav__logo foot__logo">
-                <span className="logo-z">Zee</span><span className="logo-v">Veez</span><sup className="logo-tm">&trade;</sup>
+              <a href="#" className="foot__logo">
+                <img src="/logo.png" alt="ZeeVeez™ Gummy Snacks" className="foot__logo-img" />
               </a>
-              <p className="foot__sub">Gummy Snacks</p>
               <p>One flavor says it all.</p>
               <div className="foot__texas">
                 <StarIcon size={14} className="foot__texas-star" />
