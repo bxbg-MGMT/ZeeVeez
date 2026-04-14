@@ -83,6 +83,10 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showTop, setShowTop] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
+  const [ctaEmail, setCtaEmail] = useState('')
+  const [ctaLoading, setCtaLoading] = useState(false)
+  const [ctaMessage, setCtaMessage] = useState('')
+  const [ctaError, setCtaError] = useState('')
 
   useEffect(() => {
     const onScroll = () => {
@@ -99,6 +103,36 @@ function App() {
   }, [menuOpen])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault()
+    if (!ctaEmail) return
+
+    setCtaLoading(true)
+    setCtaError('')
+    setCtaMessage('')
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: ctaEmail })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send email')
+      }
+
+      setCtaMessage('Check your email! We sent you a special welcome message.')
+      setCtaEmail('')
+      setTimeout(() => setCtaMessage(''), 5000)
+    } catch (err) {
+      setCtaError('Something went wrong. Please try again.')
+      setTimeout(() => setCtaError(''), 5000)
+    } finally {
+      setCtaLoading(false)
+    }
+  }
 
   const [heroRef, heroVis] = useReveal(0.1)
   const [pressRef, pressVis] = useReveal(0.2)
@@ -610,11 +644,28 @@ function App() {
             and be the first to get a pouch.
           </p>
           <div className="cta__form">
-            <input type="email" className="cta__input" placeholder="your@email.com" aria-label="Email address" />
-            <button className="btn btn--primary btn--cta">
-              <span>Notify Me</span>
-              <ArrowIcon />
-            </button>
+            <form onSubmit={handleEmailSubmit} className="cta__form-input">
+              <input 
+                type="email" 
+                className="cta__input" 
+                placeholder="your@email.com" 
+                aria-label="Email address"
+                value={ctaEmail}
+                onChange={(e) => setCtaEmail(e.target.value)}
+                required
+                disabled={ctaLoading}
+              />
+              <button 
+                type="submit"
+                className="btn btn--primary btn--cta"
+                disabled={ctaLoading}
+              >
+                <span>{ctaLoading ? 'Sending...' : 'Notify Me'}</span>
+                <ArrowIcon />
+              </button>
+            </form>
+            {ctaMessage && <div className="cta__message cta__message--success">{ctaMessage}</div>}
+            {ctaError && <div className="cta__message cta__message--error">{ctaError}</div>}
           </div>
           <p className="cta__note">No spam, ever. Just a heads-up when we launch.</p>
         </div>
