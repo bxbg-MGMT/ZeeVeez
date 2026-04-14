@@ -86,6 +86,7 @@
 .faq.reveal .faq__inner { animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 @keyframes revealUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
 @keyframes float { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-18px) rotate(4deg); } }
 @keyframes floatSlow { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-12px) rotate(-3deg); } }
 @keyframes pulseStar { 0%,100% { transform:scale(1) rotate(0deg); } 50% { transform:scale(1.25) rotate(15deg); } }
@@ -404,13 +405,13 @@
 .cta__inner { position:relative; z-index:1; max-width:580px; margin:0 auto; text-align:center; }
 .cta__inner h2 { font-size:clamp(28px, 4vw, 42px); font-weight:800; color:var(--text-dark); letter-spacing:-1.5px; margin-bottom:14px; }
 .cta__inner > p { font-size:17px; color:var(--text-light); line-height:1.6; margin-bottom:32px; }
-.cta__form { display:flex; gap:10px; max-width:460px; margin:0 auto 14px; }
+.cta__form { display:flex; flex-direction:column; gap:10px; max-width:460px; margin:0 auto 14px; }
 .cta__input { flex:1; padding:14px 20px; border-radius:100px; border:2px solid var(--green-200); font-size:15px; font-family:inherit; background:rgba(255,255,255,0.8); backdrop-filter:blur(8px); outline:none; transition:border-color .2s, box-shadow .2s; }
 .cta__input:focus { border-color:var(--green-500); box-shadow:0 0 0 4px rgba(34,197,94,0.12); }
 .btn--cta { white-space:nowrap; }
 .cta__note { font-size:13px; color:var(--text-light); opacity:0.7; }
-.cta__form-input { display:flex; gap:10px; max-width:460px; margin:0 auto; }
-.cta__message { margin-top:12px; padding:12px 16px; border-radius:8px; font-size:14px; font-weight:600; text-align:center; }
+.cta__form-input { display:flex; gap:10px; max-width:460px; width:100%; }
+.cta__message { margin-top:0; padding:12px 16px; border-radius:8px; font-size:14px; font-weight:600; text-align:center; min-height:40px; display:flex; align-items:center; justify-content:center; animation:slideIn 0.3s ease; }
 .cta__message--success { background:rgba(34,197,94,0.12); color:var(--green-700); border:1px solid rgba(34,197,94,0.3); }
 .cta__message--error { background:rgba(239,68,68,0.12); color:#c41f3b; border:1px solid rgba(239,68,68,0.3); }
 .cta__input:disabled { opacity:0.6; cursor:not-allowed; }
