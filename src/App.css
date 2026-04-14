@@ -465,6 +465,8 @@
   .nav__links a { font-size:17px; }
   .nav__links a::after { display:none; }
   .nav__cta { text-align:center; width:100%; }
+  .nav__burger { margin-left:auto; }
+  .nav__socials { display:none; }
   .hero { padding:90px 20px 100px; min-height:auto; }
   .hero__brand { font-size:48px; }
   .hero__corner--tl, .hero__corner--tr { border-top-width:28px; }

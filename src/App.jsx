@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './App.css'
+import tiktokLogo from './assets/tiktok-logo.svg'
 
 /* ── Scroll reveal hook ── */
 function useReveal(threshold = 0.15) {
@@ -66,9 +67,6 @@ const HeartIcon = () => (
 )
 const InstagramIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></svg>
-)
-const TikTokIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tt-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#25F4EE"/><stop offset="100%" stopColor="#FF0050"/></linearGradient></defs><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.75 2.9 2.9 0 1 1 2.31-4.64 2.88 2.88 0 0 0 5.07.52V9.56a8.03 8.03 0 0 1-4.33 1.48c-4.57 0-8.29-3.72-8.29-8.3S3.71 2.04 8.29 2.04c4.16 0 7.61 3.07 8.3 7.65h0z" fill="url(#tt-grad)"/></svg>
 )
 const AmazonIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v2H6V6zm0 4h12v2H6v-2zm0 4h8v2H6v-2zm-2 6h1v2H2v-2h2zm4 0h8v2h-8v-2zm9 0h1v2h-2v-2h1zm2 0h1v2h-2v-2h1z"/><path d="M2 2v20h20V2H2zm2 2h16v16H4V4z"/></svg>
@@ -157,7 +155,7 @@ function App() {
               <InstagramIcon size={20} />
             </a>
             <a href="https://www.tiktok.com/@zeeveez" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="nav__social-link">
-              <TikTokIcon size={20} />
+              <img src={tiktokLogo} alt="TikTok" className="nav__social-img" />
             </a>
             <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon" className="nav__social-link">
               <AmazonIcon size={20} />
