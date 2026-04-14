@@ -1,15 +1,18 @@
 import { Resend } from 'resend';
 import { createClient } from '@supabase/supabase-js';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-);
-
 export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -21,9 +24,23 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Validate environment variables
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM || 'onboarding@resend.dev';
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+    if (!apiKey) {
+      console.error('Missing RESEND_API_KEY');
+      return res.status(500).json({ error: 'Email service not configured (missing API key)' });
+    }
+
+    // Initialize Resend
+    const resend = new Resend(apiKey);
+
     // Send email via Resend
-    const data = await resend.emails.send({
-      from: process.env.RESEND_FROM || 'ZeeVeez <onboarding@resend.dev>',
+    const emailResponse = await resend.emails.send({
+      from: fromEmail,
       to: email,
       subject: 'Welcome to ZeeVeez - Gummy Snacks Launching Soon!',
       html: `
@@ -111,43 +128,43 @@ export default async function handler(req, res) {
       `,
     });
 
-    // Save email submission to Supabase
-    const { data: saveData, error: saveError } = await supabase
-      .from('email_signups')
-      .insert([
-        {
-          email: email,
-          sent_at: new Date().toISOString(),
-          status: 'sent',
-          resend_id: data.id
+    console.log('Email sent successfully:', emailResponse);
+
+    // Try to save to Supabase if configured
+    if (supabaseUrl && supabaseKey) {
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey);
+        
+        const { error: saveError } = await supabase
+          .from('email_signups')
+          .insert([
+            {
+              email: email,
+              sent_at: new Date().toISOString(),
+              status: 'sent',
+              resend_id: emailResponse.id
+            }
+          ]);
+
+        if (saveError) {
+          console.warn('Supabase save warning:', saveError);
         }
-      ]);
-
-    if (saveError) {
-      console.error('Supabase save error:', saveError);
-      // Still return success for email, even if Supabase save fails
+      } catch (supabaseErr) {
+        console.warn('Supabase connection warning:', supabaseErr);
+      }
     }
 
-    return res.status(200).json({ success: true, data, saved: !saveError });
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Email sent successfully!',
+      resendId: emailResponse.id 
+    });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Send-email error:', error.message, error);
     
-    // Try to save error to Supabase for debugging
-    try {
-      await supabase
-        .from('email_signups')
-        .insert([
-          {
-            email: email,
-            sent_at: new Date().toISOString(),
-            status: 'failed',
-            error_message: error.message
-          }
-        ]);
-    } catch (logError) {
-      console.error('Failed to log error to Supabase:', logError);
-    }
-    
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ 
+      error: error.message || 'Failed to send email',
+      details: process.env.NODE_ENV === 'development' ? error.toString() : undefined
+    });
   }
 }

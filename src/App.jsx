@@ -119,15 +119,18 @@ function App() {
         body: JSON.stringify({ email: ctaEmail })
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error('Failed to send email')
+        throw new Error(data.error || 'Failed to send email')
       }
 
       setCtaMessage('Check your email! We sent you a special welcome message.')
       setCtaEmail('')
       setTimeout(() => setCtaMessage(''), 5000)
     } catch (err) {
-      setCtaError('Something went wrong. Please try again.')
+      console.error('Email submission error:', err)
+      setCtaError(err.message || 'Something went wrong. Please try again.')
       setTimeout(() => setCtaError(''), 5000)
     } finally {
       setCtaLoading(false)
