@@ -153,7 +153,7 @@ function App() {
                 <img src={tiktokLogo} alt="TikTok" className="nav__social-img-mobile" />
               </a>
               <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon" className="nav__social-link-mobile">
-                <img src={amazonLogo} alt="Amazon" className="nav__social-img-mobile" />
+                <img src={amazonLogo} alt="Amazon" className="nav__social-img-mobile nav__amazon-logo" />
               </a>
             </div>
           </div>
@@ -165,7 +165,7 @@ function App() {
               <img src={tiktokLogo} alt="TikTok" className="nav__social-img" />
             </a>
             <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon" className="nav__social-link">
-              <img src={amazonLogo} alt="Amazon" className="nav__social-img" />
+              <img src={amazonLogo} alt="Amazon" className="nav__social-img nav__amazon-logo" />
             </a>
           </div>
         </div>
