@@ -126,6 +126,16 @@ function App() {
     <div className="site">
       <a href="#about" className="skip-link">Skip to content</a>
 
+      {/* ── Social Banner ── */}
+      <div className="social-banner">
+        <span className="social-banner__text">Find us on!</span>
+        <div className="social-banner__links">
+          <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          <a href="https://www.tiktok.com/@zeeveez" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TikTok</a>
+          <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon">Amazon</a>
+        </div>
+      </div>
+
       {/* ── Nav ── */}
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
         <div className="nav__inner">
@@ -628,9 +638,9 @@ function App() {
               </div>
               <div className="foot__col">
                 <h4>Connect</h4>
-                <a href="#">Instagram</a>
-                <a href="#">TikTok</a>
-                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.tiktok.com/@zeeveez" target="_blank" rel="noopener noreferrer">TikTok</a>
+                <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer">Amazon</a>
               </div>
             </div>
           </div>
