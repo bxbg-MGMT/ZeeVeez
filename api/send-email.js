@@ -49,28 +49,28 @@ export default async function handler(req, res) {
           <head>
             <style>
               * { margin: 0; padding: 0; }
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: linear-gradient(135deg, #fff5f8 0%, #f0fdf4 100%); }
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); }
               .container { max-width: 600px; margin: 0 auto; }
-              .header { background: linear-gradient(135deg, #e91e90 0%, #f472b6 100%); padding: 40px 20px; text-align: center; border-radius: 12px 12px 0 0; }
+              .header { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); padding: 40px 20px; text-align: center; border-radius: 12px 12px 0 0; }
               .logo { font-size: 48px; font-weight: 900; color: white; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
               .tagline { color: rgba(255,255,255,0.95); font-size: 16px; font-weight: 500; }
               .content { padding: 40px 30px; background: white; }
-              .content h2 { color: #e91e90; font-size: 28px; margin-bottom: 20px; line-height: 1.2; }
+              .content h2 { color: #22c55e; font-size: 28px; margin-bottom: 20px; line-height: 1.2; }
               .content p { color: #444; line-height: 1.7; margin-bottom: 16px; font-size: 15px; }
-              .content strong { color: #e91e90; }
-              .emphasis { background: rgba(233,30,144,0.08); padding: 20px; border-radius: 8px; border-left: 4px solid #e91e90; margin: 25px 0; }
+              .content strong { color: #22c55e; }
+              .emphasis { background: rgba(34,197,94,0.08); padding: 20px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 25px 0; }
               .features { margin: 25px 0; }
               .feature-item { margin: 12px 0; padding-left: 8px; color: #555; display: flex; align-items: flex-start; }
               .feature-icon { color: #22c55e; font-weight: bold; margin-right: 12px; font-size: 18px; }
-              .cta-button { display: inline-block; background: linear-gradient(135deg, #e91e90 0%, #f472b6 100%); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; margin: 25px 0; font-weight: 600; border: none; cursor: pointer; font-size: 15px; box-shadow: 0 4px 12px rgba(233,30,144,0.3); transition: transform 0.2s; }
+              .cta-button { display: inline-block; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; margin: 25px 0; font-weight: 600; border: none; cursor: pointer; font-size: 15px; box-shadow: 0 4px 12px rgba(34,197,94,0.3); transition: transform 0.2s; }
               .cta-button:hover { transform: scale(1.05); }
               .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
               .badge { background: #f0fdf4; padding: 12px; border-radius: 6px; text-align: center; font-weight: 600; color: #22c55e; border: 2px solid #22c55e; }
               .social-links { text-align: center; margin: 25px 0; }
-              .social-links a { color: #e91e90; text-decoration: none; font-weight: 600; margin: 0 12px; }
+              .social-links a { color: #22c55e; text-decoration: none; font-weight: 600; margin: 0 12px; }
               .social-links a:hover { text-decoration: underline; }
-              .footer { background: #faf5f8; padding: 24px 30px; border-radius: 0 0 12px 12px; font-size: 12px; color: #999; text-align: center; line-height: 1.6; }
-              .heart { color: #e91e90; }
+              .footer { background: #f0fdf4; padding: 24px 30px; border-radius: 0 0 12px 12px; font-size: 12px; color: #999; text-align: center; line-height: 1.6; }
+              .heart { color: #22c55e; }
             </style>
           </head>
           <body>

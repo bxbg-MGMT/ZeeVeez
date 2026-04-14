@@ -138,7 +138,6 @@ function App() {
   }
 
   const [heroRef, heroVis] = useReveal(0.1)
-  const [pressRef, pressVis] = useReveal(0.2)
   const [aboutRef, aboutVis] = useReveal()
   const [givesRef, givesVis] = useReveal()
   const [flavorRef, flavorVis] = useReveal()
@@ -299,18 +298,6 @@ function App() {
           ))}
         </div>
       </div>
-
-      {/* ── As Featured In ── */}
-      <section ref={pressRef} className={`press ${pressVis ? 'reveal' : ''}`}>
-        <div className="press__inner">
-          <p className="press__label">As Featured In</p>
-          <div className="press__logos">
-            {['Food & Wine', 'Bon App\u00e9tit', 'Texas Monthly', 'Fort Worth Star', 'Well+Good', 'The Kitchn'].map(name => (
-              <div className="press__logo" key={name}>{name}</div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── About ── */}
       <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
@@ -574,9 +561,11 @@ function App() {
           </div>
           <div className="testimonials__grid">
             {[
-              { name: 'Sarah M.', loc: 'Houston, TX', text: 'These are genuinely the best gummy snacks I\'ve ever had. The white honey apple flavor is addictive — my kids won\'t eat any other gummy now.', stars: 5 },
-              { name: 'James R.', loc: 'Dallas, TX', text: 'As someone who reads every label, ZeeVeez check every box. Organic ingredients, no junk, peanut free, AND they taste incredible. Finally.', stars: 5 },
-              { name: 'Maria L.', loc: 'Austin, TX', text: 'Love that they give back to charity too. A gummy snack I can feel good about buying. And honestly — so delish. Can\'t have just one is RIGHT.', stars: 5 },
+              { name: 'Sarah M.', loc: 'Houston, TX', text: 'I\'ve tried every "healthy" gummy on the market. ZeeVeez actually tastes GOOD — I don\'t feel like I\'m eating cardboard for my health. My whole family obsessed.', stars: 5 },
+              { name: 'James R.', loc: 'Dallas, TX', text: 'The ingredient list is so clean it\'s almost suspicious. No weird stuff, no mystery additives. These are what gummies should have been all along.', stars: 5 },
+              { name: 'Maria L.', loc: 'Austin, TX', text: 'Started buying them because of the charity tie-in. Now I buy them because they\'re genuinely the best-tasting snack I\'ve had. Win-win.', stars: 5 },
+              { name: 'Devon T.', loc: 'Fort Worth, TX', text: 'As a parent, finding snacks my kids actually want TO eat that I feel good ABOUT giving them? This changed the game. Plus they\'re made right here in Texas!', stars: 5 },
+              { name: 'Alex K.', loc: 'San Antonio, TX', text: 'Plant-based, no gelatin, actual organic ingredients — and they still taste like an actual treat. That\'s rare. Seriously rare. Very impressed.', stars: 5 },
             ].map(({ name, loc, text, stars }) => (
               <div className="test-card" key={name}>
                 <div className="test-card__stars">
