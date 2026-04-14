@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './App.css'
-import tiktokLogo from './assets/tiktok-logo.svg'
+import tiktokLogo from './assets/tiktok-logo.png'
 import instagramLogo from './assets/instagram-logo.svg'
 
 /* ── Scroll reveal hook ── */
