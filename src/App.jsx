@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import './App.css'
 import tiktokLogo from './assets/tiktok-logo.png'
 import instagramLogo from './assets/instagram-logo.svg'
+import amazonLogo from './assets/amazon-logo.png'
 
 /* ── Scroll reveal hook ── */
 function useReveal(threshold = 0.15) {
@@ -65,9 +66,6 @@ const StarIcon = ({ size = 16, className = '' }) => (
 )
 const HeartIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-)
-const AmazonIcon = ({ size = 18 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v2H6V6zm0 4h12v2H6v-2zm0 4h8v2H6v-2zm-2 6h1v2H2v-2h2zm4 0h8v2h-8v-2zm9 0h1v2h-2v-2h1zm2 0h1v2h-2v-2h1z"/><path d="M2 2v20h20V2H2zm2 2h16v16H4V4z"/></svg>
 )
 
 /* ── Cloud SVG decoration ── */
@@ -147,6 +145,17 @@ function App() {
             <a href="#ingredients" onClick={closeMenu}>Ingredients</a>
             <a href="#faq" onClick={closeMenu}>FAQ</a>
             <a href="#cta" className="nav__cta" onClick={closeMenu}>Get Notified</a>
+            <div className="nav__socials-mobile">
+              <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="nav__social-link-mobile">
+                <img src={instagramLogo} alt="Instagram" className="nav__social-img-mobile" />
+              </a>
+              <a href="https://www.tiktok.com/@zeeveez" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="nav__social-link-mobile">
+                <img src={tiktokLogo} alt="TikTok" className="nav__social-img-mobile" />
+              </a>
+              <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon" className="nav__social-link-mobile">
+                <img src={amazonLogo} alt="Amazon" className="nav__social-img-mobile" />
+              </a>
+            </div>
           </div>
           <div className="nav__socials">
             <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="nav__social-link">
@@ -156,7 +165,7 @@ function App() {
               <img src={tiktokLogo} alt="TikTok" className="nav__social-img" />
             </a>
             <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" aria-label="Amazon" className="nav__social-link">
-              <AmazonIcon size={20} />
+              <img src={amazonLogo} alt="Amazon" className="nav__social-img" />
             </a>
           </div>
         </div>
