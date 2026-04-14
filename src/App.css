@@ -133,7 +133,7 @@
 .nav__social-link:hover { color:var(--green-600); transform:scale(1.1); }
 .nav--scrolled .nav__social-link { color:var(--text-dark); }
 .nav__socials-mobile { display:none; }
-.nav__amazon-logo { filter:invert(1); }
+.nav__amazon-logo { background:#000; padding:4px; border-radius:4px; }
 
 /* ═══════════════════════════════════════════════ HERO ═══════════════════════════════════════════════ */
 .hero { position:relative; min-height:100vh; display:flex; align-items:center; background:linear-gradient(165deg, #f0fdf4 0%, #dcfce7 40%, #d4f7e0 70%, #fef9c3 100%); overflow:hidden; padding:100px 24px 120px; }
