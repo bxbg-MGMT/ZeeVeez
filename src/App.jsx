@@ -115,7 +115,7 @@ function App() {
   const faqs = [
     { q: 'What makes ZeeVeez different from other gummy snacks?', a: 'Every ZeeVeez pouch is made with organic tapioca syrup, organic cane sugar, water, pectin, and natural flavors — that\'s it. No gelatin, no artificial flavors, no synthetic dyes. We spent two years perfecting a gummy snack that actually tastes like the real thing.' },
     { q: 'Are ZeeVeez vegan and gluten-free?', a: 'Yes! ZeeVeez are 100% plant-based (we use pectin instead of gelatin), gluten-free, and made in a peanut-free facility. They\'re a snack the whole family can enjoy.' },
-    { q: 'Where are ZeeVeez made?', a: 'Every pouch is proudly made in Texas by ZV3, LLC, manufactured by Bridge Industrial Group in Fort Worth. We\'re a Texas company through and through.' },
+    { q: 'Where are ZeeVeez made?', a: 'ZeeVeez was born in Houston, Texas and every pouch is manufactured by Bridge Industrial Group in Fort Worth, TX. We\'re a Texas company through and through.' },
     { q: 'When will ZeeVeez be available to purchase?', a: 'We\'re launching very soon! Sign up for our email list to be the first to know when White Honey Apple drops. Early subscribers get access to exclusive launch-day pricing.' },
     { q: 'How many calories are in a pouch?', a: 'Each 1oz pouch of ZeeVeez is just 80 calories with 0g fat, 0g protein, 20g carbs, and 14g total sugars. A guilt-free snack that\'s actually delicious.' },
     { q: 'Will there be other flavors?', a: 'White Honey Apple is our signature flagship — and we have more flavors in development. Join our list to be the first to taste-test new releases.' },
@@ -158,10 +158,6 @@ function App() {
           <div className="floater floater--5" />
           <div className="floater floater--6" />
         </div>
-        {/* Pink corner accents (matching packaging) */}
-        <div className="hero__corner hero__corner--tl" aria-hidden="true" />
-        <div className="hero__corner hero__corner--tr" aria-hidden="true" />
-
         <div className="hero__content">
           <div className="hero__text">
             <div className="hero__badge">
@@ -280,11 +276,11 @@ function App() {
           </div>
           <div className="about__text">
             <span className="section-tag">Our Story</span>
-            <h2>Born in Fort Worth, Texas: <em>one flavor says it all.</em></h2>
+            <h2>Born in Houston, Texas: <em>one flavor says it all.</em></h2>
             <p>
-              ZeeVeez started with a belief that gummy snacks could be better.
-              Better ingredients, better taste, better impact. Made by ZV3, LLC
-              right here in Fort Worth, every pouch is crafted with organic
+              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
+              could be better. Better ingredients, better taste, better impact.
+              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
               ingredients, real pectin, and natural flavors &mdash; no gelatin,
               no synthetic dyes, no compromises.
             </p>
@@ -303,7 +299,7 @@ function App() {
               </div>
               <div className="about__hl">
                 <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
-                <div><strong>Made in Texas</strong><span>Fort Worth, TX</span></div>
+                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
               </div>
             </div>
           </div>
@@ -393,7 +389,7 @@ function App() {
         <div className="process__inner">
           <div className="process__header">
             <span className="section-tag">Our Process</span>
-            <h2>Crafted with care in Fort Worth, Texas</h2>
+            <h2>Born in Houston, manufactured in Fort Worth</h2>
             <p>Every pouch goes through a careful process — no shortcuts.</p>
           </div>
           <div className="process__timeline">
@@ -454,7 +450,7 @@ function App() {
               { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
               { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
               { icon: '&#128155;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
-              { icon: '&#11088;', title: 'Made in Texas', desc: 'Proudly crafted in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
+              { icon: '&#11088;', title: 'Made in Texas', desc: 'Born in Houston, manufactured in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
             ].map(({ icon, title, desc }) => (
               <div className="feature-card" key={title}>
                 <div className="feature-card__icon" dangerouslySetInnerHTML={{ __html: icon }} />
@@ -519,7 +515,7 @@ function App() {
           </div>
           <div className="testimonials__grid">
             {[
-              { name: 'Sarah M.', loc: 'Fort Worth, TX', text: 'These are genuinely the best gummy snacks I\'ve ever had. The white honey apple flavor is addictive — my kids won\'t eat any other gummy now.', stars: 5 },
+              { name: 'Sarah M.', loc: 'Houston, TX', text: 'These are genuinely the best gummy snacks I\'ve ever had. The white honey apple flavor is addictive — my kids won\'t eat any other gummy now.', stars: 5 },
               { name: 'James R.', loc: 'Dallas, TX', text: 'As someone who reads every label, ZeeVeez check every box. Organic ingredients, no junk, peanut free, AND they taste incredible. Finally.', stars: 5 },
               { name: 'Maria L.', loc: 'Austin, TX', text: 'Love that they give back to charity too. A gummy snack I can feel good about buying. And honestly — so delish. Can\'t have just one is RIGHT.', stars: 5 },
             ].map(({ name, loc, text, stars }) => (
@@ -614,7 +610,7 @@ function App() {
               <p>One flavor says it all.</p>
               <div className="foot__texas">
                 <StarIcon size={14} className="foot__texas-star" />
-                <span>Proudly made in Fort Worth, Texas</span>
+                <span>Born in Houston, TX &middot; Manufactured in Fort Worth, TX</span>
               </div>
               <div className="foot__company">
                 ZV3, LLC &middot; Bridge Industrial Group<br />
