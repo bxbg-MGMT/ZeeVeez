@@ -421,12 +421,29 @@ function App() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
             </button>
             <div className="nonprofits__carousel-track">
-              <a href={nonprofits[carouselIndex].url} target="_blank" rel="noopener noreferrer" className={`nonprofit-card nonprofit-card--carousel nonprofit-card--${carouselDirection}`}>
-                <img src={nonprofits[carouselIndex].logo} alt={nonprofits[carouselIndex].name} className="nonprofit-card__logo" />
-                <h3>{nonprofits[carouselIndex].name}</h3>
-                <p>{nonprofits[carouselIndex].desc}</p>
-                <div className="nonprofit-card__cta">Visit Website →</div>
-              </a>
+              {nonprofits.map((nonprofit, idx) => {
+                const distance = (idx - carouselIndex + nonprofits.length) % nonprofits.length
+                const isActive = distance === 0
+                return (
+                  <a
+                    key={idx}
+                    href={nonprofit.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`nonprofit-card nonprofit-card--carousel nonprofit-card--${carouselDirection} nonprofit-card--stack nonprofit-card--stack-${distance}`}
+                    style={{
+                      zIndex: nonprofits.length - distance,
+                      opacity: distance > 2 ? 0 : 1,
+                      pointerEvents: isActive ? 'auto' : 'none'
+                    }}
+                  >
+                    <img src={nonprofit.logo} alt={nonprofit.name} className="nonprofit-card__logo" />
+                    <h3>{nonprofit.name}</h3>
+                    <p>{nonprofit.desc}</p>
+                    <div className="nonprofit-card__cta">Visit Website →</div>
+                  </a>
+                )
+              })}
             </div>
             <button className="nonprofits__btn nonprofits__btn--next" onClick={handleCarouselNext} aria-label="Next nonprofit">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg>
