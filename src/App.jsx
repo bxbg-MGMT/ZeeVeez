@@ -397,7 +397,7 @@ function App() {
               <h3>Meals on Wheels</h3>
               <p>Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.</p>
             </a>
-            <a href="https://www.petsaliveorg.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
+            <a href="https://www.austinpetsalive.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
               <img src={petsaliveLogo} alt="Pets Alive" className="nonprofit-card__logo" />
               <h3>Pets Alive</h3>
               <p>Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.</p>
