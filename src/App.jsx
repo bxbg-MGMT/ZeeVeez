@@ -683,19 +683,23 @@ function App() {
 
       {/* ── Trust Badges ── */}
       <section ref={trustRef} className={`trust ${trustVis ? 'reveal' : ''}`}>
-        <div className="trust__inner">
-          {[
-            { icon: '&#127807;', label: 'Plant\nBased' },
-            { icon: '&#127806;', label: 'Organic\nIngredients' },
-            { icon: '&#127834;', label: 'Gluten\nFree' },
-            { icon: '&#129372;', label: 'Peanut\nFree' },
-            { icon: '&#128155;', label: 'No Artificial\nAnything' },
-            { icon: '&#129389;', label: 'Gelatin\nFree' },
-            { icon: '&#10084;&#65039;', label: 'Gives Back\nto Charity' },
-          ].map(({ icon, label }) => (
-            <div className="trust__badge" key={label}>
-              <div className="trust__badge-icon" dangerouslySetInnerHTML={{ __html: icon }} />
-              <div className="trust__badge-label">{label}</div>
+        <div className="trust__track">
+          {Array.from({ length: 3 }).map((_, repeatIdx) => (
+            <div className="trust__content" key={repeatIdx}>
+              {[
+                { icon: '&#127807;', label: 'Plant\nBased' },
+                { icon: '&#127806;', label: 'Organic\nIngredients' },
+                { icon: '&#127834;', label: 'Gluten\nFree' },
+                { icon: '&#129372;', label: 'Peanut\nFree' },
+                { icon: '&#128155;', label: 'No Artificial\nAnything' },
+                { icon: '&#129389;', label: 'Gelatin\nFree' },
+                { icon: '&#10084;&#65039;', label: 'Gives Back\nto Charity' },
+              ].map(({ icon, label }) => (
+                <div className="trust__badge" key={label}>
+                  <div className="trust__badge-icon" dangerouslySetInnerHTML={{ __html: icon }} />
+                  <div className="trust__badge-label">{label}</div>
+                </div>
+              ))}
             </div>
           ))}
         </div>

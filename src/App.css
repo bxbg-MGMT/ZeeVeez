@@ -472,12 +472,14 @@
 .test-card__loc { font-size:12px; color:var(--text-light); }
 
 /* ═══════════════════════════════════════════════ TRUST BADGES ═══════════════════════════════════════════════ */
-.trust { padding:60px 24px; border-top:1px solid var(--green-100); border-bottom:1px solid var(--green-100); }
-.trust__inner { max-width:1000px; margin:0 auto; display:flex; justify-content:center; flex-wrap:wrap; gap:24px; }
-.trust__badge { text-align:center; min-width:100px; transition:transform .3s; }
-.trust__badge:hover { transform:translateY(-4px); }
-.trust__badge-icon { font-size:32px; margin-bottom:6px; }
-.trust__badge-label { font-size:12px; font-weight:700; color:var(--text-light); text-transform:uppercase; letter-spacing:0.5px; line-height:1.4; white-space:pre-line; }
+.trust { padding:16px 0; background:linear-gradient(90deg, var(--green-500) 0%, var(--green-600) 50%, var(--green-500) 100%); overflow:hidden; }
+.trust__track { display:flex; animation:trustScroll 40s linear infinite; width:max-content; gap:0; }
+.trust__content { display:flex; align-items:center; gap:48px; padding:12px 24px; flex-shrink:0; }
+.trust__badge { display:flex; flex-direction:column; align-items:center; gap:8px; min-width:90px; }
+.trust__badge-icon { font-size:28px; line-height:1; }
+.trust__badge-label { font-size:11px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.5px; line-height:1.2; white-space:pre-line; text-align:center; }
+
+@keyframes trustScroll { 0% { transform:translateX(0); } 100% { transform:translateX(calc(-33.333% - 24px)); } }
 
 /* ═══════════════════════════════════════════════ FAQ ═══════════════════════════════════════════════ */
 .faq { padding:120px 24px; }
