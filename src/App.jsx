@@ -496,12 +496,13 @@ function App() {
               <div className="flavor__ring flavor__ring--1" aria-hidden="true" />
               <div className="flavor__ring flavor__ring--2" aria-hidden="true" />
               <div className="flavor__ring flavor__ring--3" aria-hidden="true" />
-              <div className="gummy-xl gummy-xl--green">
-                <div className="gummy-xl__shine" />
-                <div className="gummy-xl__face">
-                  <div className="gummy-xl__eye" /><div className="gummy-xl__eye" />
-                  <div className="gummy-xl__mouth" />
+              <div className="apple-lg apple-lg--green apple-lg--flavor">
+                <div className="apple-lg__shine" />
+                <div className="apple-lg__face">
+                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
+                  <div className="apple-lg__mouth" />
                 </div>
+                <div className="apple-lg__leaf"></div>
               </div>
             </div>
           </div>
