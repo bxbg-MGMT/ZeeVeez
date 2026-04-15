@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const emailResponse = await resend.emails.send({
       from: fromEmail,
       to: email,
-      subject: 'Welcome to ZeeVeez - Gummy Snacks Launching Soon!',
+      subject: 'You made the list.',
       html: `
         <!DOCTYPE html>
         <html>
@@ -84,6 +84,8 @@ export default async function handler(req, res) {
                 <p>Hey, you're on the ZeeVeez waitlist. We're glad you're here.</p>
                 
                 <p>Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything. Just clean ingredients and a flavor (White Honey Apple, 80 cal/pouch) that people keep asking us about.</p>
+                
+                <p>We also built ZeeVeez with a bigger goal in mind. Most of our profits go toward local Texas organizations. Buying a bag means something beyond the snack.</p>
                 
                 <p>Being on the waitlist means you'll hear about launch-day pricing first, before anyone else.</p>
                 
