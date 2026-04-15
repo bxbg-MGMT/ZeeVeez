@@ -248,26 +248,26 @@ function App() {
           <div className="hero__visual">
             <div className="hero__gummy-scene">
               <div className="hero__glow" aria-hidden="true" />
-              <div className="gummy-lg gummy-lg--green">
-                <div className="gummy-lg__shine" />
-                <div className="gummy-lg__face">
-                  <div className="gummy-lg__eye" /><div className="gummy-lg__eye" />
-                  <div className="gummy-lg__mouth" />
+              <div className="apple-lg apple-lg--green">
+                <div className="apple-lg__shine" />
+                <div className="apple-lg__face">
+                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
+                  <div className="apple-lg__mouth" />
                 </div>
               </div>
-              <div className="gummy-lg gummy-lg--green gummy-lg--center">
-                <div className="gummy-lg__shine" />
-                <div className="gummy-lg__face">
-                  <div className="gummy-lg__eye" /><div className="gummy-lg__eye" />
-                  <div className="gummy-lg__mouth gummy-lg__mouth--big" />
+              <div className="apple-lg apple-lg--green apple-lg--center">
+                <div className="apple-lg__shine" />
+                <div className="apple-lg__face">
+                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
+                  <div className="apple-lg__mouth apple-lg__mouth--big" />
                 </div>
-                <div className="gummy-lg__crown">&#9733;</div>
+                <div className="apple-lg__leaf"></div>
               </div>
-              <div className="gummy-lg gummy-lg--green">
-                <div className="gummy-lg__shine" />
-                <div className="gummy-lg__face">
-                  <div className="gummy-lg__eye" /><div className="gummy-lg__eye" />
-                  <div className="gummy-lg__mouth" />
+              <div className="apple-lg apple-lg--green">
+                <div className="apple-lg__shine" />
+                <div className="apple-lg__face">
+                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
+                  <div className="apple-lg__mouth" />
                 </div>
               </div>
             </div>
