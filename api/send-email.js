@@ -77,44 +77,19 @@ export default async function handler(req, res) {
             <div class="container">
               <div class="header">
                 <div class="logo">🍯 ZeeVeez</div>
-                <div class="tagline">The Gummy Squad Has Arrived (Minus the Regret)</div>
+                <div class="tagline">Welcome to the waitlist</div>
               </div>
               
               <div class="content">
-                <h2>Yo, welcome to the crew! 🎉</h2>
+                <p>Hey, you're on the ZeeVeez waitlist. We're glad you're here.</p>
                 
-                <p>We're losing it. In the best way. You just joined the ZeeVeez waitlist, and we're not exaggerating—this might be the best decision you've made this month.</p>
+                <p>Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything. Just clean ingredients and a flavor (White Honey Apple, 80 cal/pouch) that people keep asking us about.</p>
                 
-                <div class="emphasis">
-                  <p><strong style="font-size: 18px;">Here's the tea:</strong> We spent TWO YEARS perfecting gummies that don't taste like regret. No gelatin. No artificial garbage. Just pure, unapologetic deliciousness.</p>
-                </div>
+                <p>Being on the waitlist means you'll hear about launch-day pricing first, before anyone else.</p>
                 
-                <p><strong>Why you're about to become obsessed:</strong></p>
-                <div class="features">
-                  <div class="feature-item"><span class="feature-icon">✨</span> <span>All-natural ingredients that actually make sense (we checked the thesaurus, "guilt-free snack" is the only two words needed)</span></div>
-                  <div class="feature-item"><span class="feature-icon">🌱</span> <span>Plant-based vibes that make you feel like a wellness influencer without the Instagram addiction</span></div>
-                  <div class="feature-item"><span class="feature-icon">💚</span> <span>Only 80 calories per pouch (we did the math so you don't have to)</span></div>
-                  <div class="feature-item"><span class="feature-icon">⭐</span> <span>Proudly made in Texas by people who actually care</span></div>
-                </div>
+                <p>More soon.</p>
                 
-                <p>Here's what's about to happen: You'll be the FIRST to get exclusive launch-day pricing. We're talking early-bird perks that'll make your friends jealous. You're basically a VIP now. Congratulations on your win.</p>
-                
-                <div style="text-align: center;">
-                  <a href="https://instagram.com/thefeelgoodgummy" class="cta-button">Follow the Chaos on Instagram</a>
-                </div>
-                
-                <div class="grid">
-                  <div class="badge">🎬 Catch us on TikTok</div>
-                  <div class="badge">📦 Drop June 2026</div>
-                </div>
-                
-                <div class="social-links">
-                  Check us out on <a href="https://tiktok.com/@zeeveez">TikTok @zeeveez</a> • <a href="https://amazon.com/thefeelgoodgummy">Amazon</a>
-                </div>
-                
-                <p style="margin-top: 30px; font-size: 13px; color: #999; text-align: center;">
-                  P.S. — We're not just another snack brand. A portion of every sale supports causes we actually believe in. <strong style="color: #e91e90;">Snacking has never felt so good.</strong>
-                </p>
+                <p style="margin-top: 30px; font-weight: 600; color: #22c55e;">ZeeVeez, made in Texas</p>
               </div>
               
               <div class="footer">
