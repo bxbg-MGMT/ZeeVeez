@@ -3,6 +3,10 @@ import './App.css'
 import tiktokLogo from './assets/tiktok-logo.png'
 import instagramLogo from './assets/instagram-logo.svg'
 import amazonLogo from './assets/amazon-logo.png'
+import emancipetLogo from './assets/Emancipet.png'
+import marbridgeLogo from './assets/Marbridge.jpg'
+import mealswheelsLogo from './assets/Meals on Wheels .png'
+import petsaliveLogo from './assets/Pets alive.png'
 
 /* ── Scroll reveal hook ── */
 function useReveal(threshold = 0.15) {
@@ -140,6 +144,7 @@ function App() {
   const [heroRef, heroVis] = useReveal(0.1)
   const [aboutRef, aboutVis] = useReveal()
   const [givesRef, givesVis] = useReveal()
+  const [nonprofitRef, nonprofitVis] = useReveal()
   const [flavorRef, flavorVis] = useReveal()
   const [processRef, processVis] = useReveal()
   const [statsRef, statsVis] = useReveal(0.3)
@@ -363,6 +368,39 @@ function App() {
               charities benefiting animals and children. Every pouch you enjoy
               helps make a real difference. Learn more at zeeveez.com.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Non-Profits/Partners ── */}
+      <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`}>
+        <div className="nonprofits__inner">
+          <div className="nonprofits__header">
+            <span className="section-tag">Making a Difference</span>
+            <h2>Our charity partners</h2>
+            <p>A portion of ZeeVeez profits go to these organizations dedicated to helping animals and children in Texas.</p>
+          </div>
+          <div className="nonprofits__grid">
+            <div className="nonprofit-card">
+              <img src={emancipetLogo} alt="Emancipet" className="nonprofit-card__logo" />
+              <h3>Emancipet</h3>
+              <p>Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.</p>
+            </div>
+            <div className="nonprofit-card">
+              <img src={marbridgeLogo} alt="Marbridge" className="nonprofit-card__logo" />
+              <h3>Marbridge</h3>
+              <p>Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.</p>
+            </div>
+            <div className="nonprofit-card">
+              <img src={mealswheelsLogo} alt="Meals on Wheels" className="nonprofit-card__logo" />
+              <h3>Meals on Wheels</h3>
+              <p>Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.</p>
+            </div>
+            <div className="nonprofit-card">
+              <img src={petsaliveLogo} alt="Pets Alive" className="nonprofit-card__logo" />
+              <h3>Pets Alive</h3>
+              <p>Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.</p>
+            </div>
           </div>
         </div>
       </section>
