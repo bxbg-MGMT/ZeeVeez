@@ -7,6 +7,7 @@ import emancipetLogo from './assets/Emancipet.png'
 import marbridgeLogo from './assets/Marbridge.jpg'
 import mealswheelsLogo from './assets/Meals on Wheels .png'
 import petsaliveLogo from './assets/Pets alive.png'
+import spcaLogo from './assets/SPCA.jpg'
 
 /* ── Scroll reveal hook ── */
 function useReveal(threshold = 0.15) {
@@ -381,26 +382,31 @@ function App() {
             <p>A portion of ZeeVeez profits go to these organizations dedicated to helping animals and children in Texas.</p>
           </div>
           <div className="nonprofits__grid">
-            <div className="nonprofit-card">
+            <a href="https://www.emancipet.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
               <img src={emancipetLogo} alt="Emancipet" className="nonprofit-card__logo" />
               <h3>Emancipet</h3>
               <p>Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.</p>
-            </div>
-            <div className="nonprofit-card">
+            </a>
+            <a href="https://www.marbridge.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
               <img src={marbridgeLogo} alt="Marbridge" className="nonprofit-card__logo" />
               <h3>Marbridge</h3>
               <p>Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.</p>
-            </div>
-            <div className="nonprofit-card">
+            </a>
+            <a href="https://www.mealsonwheelsamerica.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
               <img src={mealswheelsLogo} alt="Meals on Wheels" className="nonprofit-card__logo" />
               <h3>Meals on Wheels</h3>
               <p>Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.</p>
-            </div>
-            <div className="nonprofit-card">
+            </a>
+            <a href="https://www.petsaliveorg.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
               <img src={petsaliveLogo} alt="Pets Alive" className="nonprofit-card__logo" />
               <h3>Pets Alive</h3>
               <p>Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.</p>
-            </div>
+            </a>
+            <a href="https://www.spca.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
+              <img src={spcaLogo} alt="SPCA" className="nonprofit-card__logo" />
+              <h3>SPCA</h3>
+              <p>Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.</p>
+            </a>
           </div>
         </div>
       </section>

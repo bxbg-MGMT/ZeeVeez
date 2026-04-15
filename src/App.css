@@ -282,7 +282,7 @@
 .nonprofits__header h2 { font-size:clamp(32px, 4vw, 48px); font-weight:800; color:var(--text-dark); margin-bottom:16px; letter-spacing:-1px; }
 .nonprofits__header p { font-size:18px; color:var(--text-light); line-height:1.6; max-width:600px; margin:0 auto; }
 .nonprofits__grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:28px; }
-.nonprofit-card { background:#fff; border:1.5px solid var(--green-100); border-radius:16px; padding:28px 24px; text-align:center; transition:transform .3s, box-shadow .3s; }
+.nonprofit-card { background:#fff; border:1.5px solid var(--green-100); border-radius:16px; padding:28px 24px; text-align:center; transition:transform .3s, box-shadow .3s; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
 .nonprofit-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(34,197,94,0.15); }
 .nonprofit-card__logo { width:100%; height:120px; object-fit:contain; margin-bottom:20px; display:block; }
 .nonprofit-card h3 { font-size:18px; font-weight:700; color:var(--text-dark); margin-bottom:12px; }
