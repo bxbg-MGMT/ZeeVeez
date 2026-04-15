@@ -76,22 +76,25 @@ export default async function handler(req, res) {
           <body>
             <div class="container">
               <div class="header">
-                <div class="logo">🍯 ZeeVeez</div>
+                <div class="logo">💚 ZeeVeez</div>
                 <div class="tagline">Welcome to the waitlist</div>
               </div>
               
               <div class="content">
-                <p>Hey, you're on the ZeeVeez waitlist. We're glad you're here.</p>
+                <p style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">✨ Hey, you're on the ZeeVeez waitlist. We're glad you're here. ✨</p>
                 
-                <p>Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything. Just clean ingredients and a flavor (White Honey Apple, 80 cal/pouch) that people keep asking us about.</p>
+                <p style="margin-bottom: 20px;">Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything. Just clean ingredients and a flavor (White Honey Apple, 80 cal/pouch) that people keep asking us about.</p>
                 
-                <p>We also built ZeeVeez with a bigger goal in mind. Most of our profits go toward local Texas organizations. Buying a bag means something beyond the snack.</p>
+                <p style="margin-bottom: 20px;">We also built ZeeVeez with a bigger goal in mind. Most of our profits go toward local Texas organizations. Buying a bag means something beyond the snack.</p>
                 
-                <p>Being on the waitlist means you'll hear about launch-day pricing first, before anyone else.</p>
+                <div style="background: rgba(34,197,94,0.06); padding: 16px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 24px 0;">
+                  <p style="margin: 0; font-weight: 600; color: #22c55e;">🎁 Waitlist Perk</p>
+                  <p style="margin: 6px 0 0 0;">Being on the waitlist means you'll hear about launch-day pricing first, before anyone else.</p>
+                </div>
                 
-                <p>More soon.</p>
+                <p style="text-align: center; margin-top: 24px; font-style: italic;">More soon.</p>
                 
-                <p style="margin-top: 30px; font-weight: 600; color: #22c55e;">ZeeVeez, made in Texas</p>
+                <p style="margin-top: 30px; font-weight: 700; color: #22c55e; font-size: 16px; text-align: center;">ZeeVeez, made in Texas</p>
               </div>
               
               <div class="footer">
