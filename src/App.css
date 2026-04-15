@@ -188,14 +188,14 @@
 .apple-lg--center { width:115px; height:120px; border-radius:45% 45% 60% 60%; z-index:2; animation:float 3.5s ease-in-out infinite; }
 .apple-lg__shine { position:absolute; top:16px; left:20px; width:24px; height:28px; background:rgba(255,255,255,0.5); border-radius:50%; filter:blur(3px); }
 .apple-lg--center .apple-lg__shine { left:26px; width:28px; height:32px; }
-.apple-lg__face { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding-top:18px; width:54px; }
+.apple-lg__face { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding-top:24px; width:42px; }
 .apple-lg--center .apple-lg__face { width:62px; gap:14px; }
-.apple-lg__eye { width:9px; height:11px; background:rgba(0,0,0,0.45); border-radius:50%; }
-.apple-lg__mouth { width:18px; height:9px; border-bottom:3px solid rgba(0,0,0,0.35); border-radius:0 0 50% 50%; margin-top:-4px; }
+.apple-lg__eye { width:8px; height:10px; background:rgba(0,0,0,0.45); border-radius:50%; }
+.apple-lg__mouth { width:16px; height:8px; border-bottom:2.5px solid rgba(0,0,0,0.35); border-radius:0 0 50% 50%; margin-top:-3px; }
 .apple-lg__mouth--big { width:24px; height:12px; border-bottom:3px solid rgba(0,0,0,0.35); border-radius:0 0 60% 60%; margin-top:-3px; }
 .apple-lg__leaf { position:absolute; top:-14px; right:10px; width:18px; height:12px; background:#22b14c; clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); transform:rotate(25deg); animation:pulseStar 2s ease-in-out infinite; }
 
-.apple-lg--flavor { width:160px; height:170px; border-radius:45% 45% 55% 55%; animation:float 4s ease-in-out infinite; }
+.apple-lg--flavor { width:160px; height:170px; border-radius:48% 48% 52% 52%; animation:float 4s ease-in-out infinite; }
 
 .hero__floaters { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 .floater { position:absolute; border-radius:50%; opacity:0.5; }
