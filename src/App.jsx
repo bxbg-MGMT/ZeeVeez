@@ -92,6 +92,18 @@ function App() {
   const [ctaLoading, setCtaLoading] = useState(false)
   const [ctaMessage, setCtaMessage] = useState('')
   const [ctaError, setCtaError] = useState('')
+  const [carouselIndex, setCarouselIndex] = useState(0)
+
+  const nonprofits = [
+    { logo: emancipetLogo, name: 'Emancipet', desc: 'Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.', url: 'https://www.emancipet.org/' },
+    { logo: marbridgeLogo, name: 'Marbridge', desc: 'Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.', url: 'https://www.marbridge.org/' },
+    { logo: mealswheelsLogo, name: 'Meals on Wheels', desc: 'Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.', url: 'https://www.mealsonwheelsamerica.org/' },
+    { logo: petsaliveLogo, name: 'Pets Alive', desc: 'Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.', url: 'https://www.austinpetsalive.org/' },
+    { logo: spcaLogo, name: 'SPCA', desc: 'Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.', url: 'https://www.spca.org/' },
+  ]
+
+  const handleCarouselPrev = useCallback(() => setCarouselIndex((prev) => (prev === 0 ? nonprofits.length - 1 : prev - 1)), [nonprofits.length])
+  const handleCarouselNext = useCallback(() => setCarouselIndex((prev) => (prev === nonprofits.length - 1 ? 0 : prev + 1)), [nonprofits.length])
 
   useEffect(() => {
     const onScroll = () => {
@@ -106,6 +118,15 @@ function App() {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') handleCarouselPrev()
+      if (e.key === 'ArrowRight') handleCarouselNext()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleCarouselPrev, handleCarouselNext])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
@@ -375,38 +396,38 @@ function App() {
 
       {/* ── Non-Profits/Partners ── */}
       <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`}>
+        <div className="nonprofits__bg" aria-hidden="true"></div>
         <div className="nonprofits__inner">
           <div className="nonprofits__header">
             <span className="section-tag">Making a Difference</span>
             <h2>Our charity partners</h2>
             <p>A portion of ZeeVeez profits go to these organizations dedicated to helping animals and children in Texas.</p>
           </div>
-          <div className="nonprofits__grid">
-            <a href="https://www.emancipet.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
-              <img src={emancipetLogo} alt="Emancipet" className="nonprofit-card__logo" />
-              <h3>Emancipet</h3>
-              <p>Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.</p>
-            </a>
-            <a href="https://www.marbridge.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
-              <img src={marbridgeLogo} alt="Marbridge" className="nonprofit-card__logo" />
-              <h3>Marbridge</h3>
-              <p>Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.</p>
-            </a>
-            <a href="https://www.mealsonwheelsamerica.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
-              <img src={mealswheelsLogo} alt="Meals on Wheels" className="nonprofit-card__logo" />
-              <h3>Meals on Wheels</h3>
-              <p>Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.</p>
-            </a>
-            <a href="https://www.austinpetsalive.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
-              <img src={petsaliveLogo} alt="Pets Alive" className="nonprofit-card__logo" />
-              <h3>Pets Alive</h3>
-              <p>Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.</p>
-            </a>
-            <a href="https://www.spca.org/" target="_blank" rel="noopener noreferrer" className="nonprofit-card">
-              <img src={spcaLogo} alt="SPCA" className="nonprofit-card__logo" />
-              <h3>SPCA</h3>
-              <p>Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.</p>
-            </a>
+          <div className="nonprofits__carousel">
+            <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div className="nonprofits__carousel-track">
+              <a href={nonprofits[carouselIndex].url} target="_blank" rel="noopener noreferrer" className="nonprofit-card nonprofit-card--carousel">
+                <img src={nonprofits[carouselIndex].logo} alt={nonprofits[carouselIndex].name} className="nonprofit-card__logo" />
+                <h3>{nonprofits[carouselIndex].name}</h3>
+                <p>{nonprofits[carouselIndex].desc}</p>
+                <div className="nonprofit-card__cta">Visit Website →</div>
+              </a>
+            </div>
+            <button className="nonprofits__btn nonprofits__btn--next" onClick={handleCarouselNext} aria-label="Next nonprofit">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div className="nonprofits__dots">
+            {nonprofits.map((_, i) => (
+              <button
+                key={i}
+                className={`nonprofits__dot ${i === carouselIndex ? 'nonprofits__dot--active' : ''}`}
+                onClick={() => setCarouselIndex(i)}
+                aria-label={`Go to nonprofit ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </section>
