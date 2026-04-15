@@ -277,6 +277,10 @@
 /* ═══════════════════════════════════════════════ NON-PROFITS ═══════════════════════════════════════════════ */
 @keyframes carouselFadeIn { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
 @keyframes carouselFadeOut { from { opacity:1; transform:scale(1); } to { opacity:0; transform:scale(0.95); } }
+@keyframes slideInFromLeft { from { opacity:0; transform:translateX(-60px) rotateY(15deg); } to { opacity:1; transform:translateX(0) rotateY(0deg); } }
+@keyframes slideInFromRight { from { opacity:0; transform:translateX(60px) rotateY(-15deg); } to { opacity:1; transform:translateX(0) rotateY(0deg); } }
+@keyframes slideOutToLeft { from { opacity:1; transform:translateX(0) rotateY(0deg); } to { opacity:0; transform:translateX(-60px) rotateY(15deg); } }
+@keyframes slideOutToRight { from { opacity:1; transform:translateX(0) rotateY(0deg); } to { opacity:0; transform:translateX(60px) rotateY(-15deg); } }
 @keyframes slideInRight { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
 @keyframes slideInLeft { from { opacity:0; transform:translateX(-20px); } to { opacity:1; transform:translateX(0); } }
 @keyframes buttonPulse { 0%, 100% { box-shadow:0 0 0 0 rgba(34,197,94,0.7); } 50% { box-shadow:0 0 0 8px rgba(34,197,94,0); } }
@@ -344,6 +348,8 @@
 }
 
 /* ═══════════════════════════════════════════════ FLAVOR ═══════════════════════════════════════════════ */
+.flavor { position:relative; padding:120px 24px; overflow:hidden; }
+.flavor__bg { position:absolute; inset:0; background:linear-gradient(160deg, var(--green-600) 0%, #15803d 50%, #166534 100%); z-index:0; }
 .cloud--flavor-1 { top:10%; right:5%; width:90px; color:rgba(255,255,255,0.08); animation:cloudFloat 12s ease-in-out infinite; }
 .cloud--flavor-2 { bottom:10%; left:8%; width:70px; color:rgba(255,255,255,0.05); animation:cloudFloat 14s ease-in-out infinite 3s; }
 .flavor__inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:80px; align-items:center; }

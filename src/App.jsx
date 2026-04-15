@@ -93,6 +93,7 @@ function App() {
   const [ctaMessage, setCtaMessage] = useState('')
   const [ctaError, setCtaError] = useState('')
   const [carouselIndex, setCarouselIndex] = useState(0)
+  const [carouselDirection, setCarouselDirection] = useState('next')
 
   const nonprofits = [
     { logo: emancipetLogo, name: 'Emancipet', desc: 'Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.', url: 'https://www.emancipet.org/' },
@@ -102,8 +103,14 @@ function App() {
     { logo: spcaLogo, name: 'SPCA', desc: 'Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.', url: 'https://www.spca.org/' },
   ]
 
-  const handleCarouselPrev = useCallback(() => setCarouselIndex((prev) => (prev === 0 ? nonprofits.length - 1 : prev - 1)), [nonprofits.length])
-  const handleCarouselNext = useCallback(() => setCarouselIndex((prev) => (prev === nonprofits.length - 1 ? 0 : prev + 1)), [nonprofits.length])
+  const handleCarouselPrev = useCallback(() => {
+    setCarouselDirection('prev')
+    setCarouselIndex((prev) => (prev === 0 ? nonprofits.length - 1 : prev - 1))
+  }, [nonprofits.length])
+  const handleCarouselNext = useCallback(() => {
+    setCarouselDirection('next')
+    setCarouselIndex((prev) => (prev === nonprofits.length - 1 ? 0 : prev + 1))
+  }, [nonprofits.length])
 
   useEffect(() => {
     const onScroll = () => {
@@ -121,8 +128,14 @@ function App() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') handleCarouselPrev()
-      if (e.key === 'ArrowRight') handleCarouselNext()
+      if (e.key === 'ArrowLeft') {
+        setCarouselDirection('prev')
+        setCarouselIndex((prev) => (prev === 0 ? nonprofits.length - 1 : prev - 1))
+      }
+      if (e.key === 'ArrowRight') {
+        setCarouselDirection('next')
+        setCarouselIndex((prev) => (prev === nonprofits.length - 1 ? 0 : prev + 1))
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
@@ -408,7 +421,7 @@ function App() {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
             </button>
             <div className="nonprofits__carousel-track">
-              <a href={nonprofits[carouselIndex].url} target="_blank" rel="noopener noreferrer" className="nonprofit-card nonprofit-card--carousel">
+              <a href={nonprofits[carouselIndex].url} target="_blank" rel="noopener noreferrer" className={`nonprofit-card nonprofit-card--carousel nonprofit-card--${carouselDirection}`}>
                 <img src={nonprofits[carouselIndex].logo} alt={nonprofits[carouselIndex].name} className="nonprofit-card__logo" />
                 <h3>{nonprofits[carouselIndex].name}</h3>
                 <p>{nonprofits[carouselIndex].desc}</p>
