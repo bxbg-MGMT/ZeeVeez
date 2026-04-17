@@ -106,6 +106,9 @@ export default async function handler(req, res) {
                 <p><strong>ZeeVeez™</strong> — Feel Good Gummies</p>
                 <p>ZV3, LLC • 2615 Ludelle Street, Fort Worth, TX 76105</p>
                 <p>Made with <span class="heart">💚</span> in Texas</p>
+                <p style="margin-top: 16px; border-top: 1px solid #ddd; padding-top: 12px;">
+                  <a href="https://zeeveez.vercel.app/api/unsubscribe?email=${encodeURIComponent(email)}" style="color: #999; text-decoration: none; font-size: 11px;">Unsubscribe from our emails</a>
+                </p>
               </div>
             </div>
           </body>
