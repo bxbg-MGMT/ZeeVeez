@@ -1,17 +1,323 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ZeeVeez Gummy Snacks — All-natural, plant-based gummy snacks. Try our signature White Honey Apple flavor. Proudly made in Texas by ZV3, LLC." />
-    <title>ZeeVeez™ | All-Natural Gummy Snacks | One Flavor Says It All</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZeeVeez Gummy Snacks — All-natural, plant-based gummy snacks. White Honey Apple. Made in Texas by ZV3, LLC." />
+  <title>ZeeVeez™ | Coming Soon</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-50:  #f0fdf4;
+      --green-100: #dcfce7;
+      --green-200: #bbf7d0;
+      --green-400: #4ade80;
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+      --text-dark: #0f1f15;
+      --text-mid:  #2d5a3d;
+      --text-light:#5a7d6a;
+      --honey:     #f59e0b;
+      --pink:      #e91e90;
+      --white:     #fff;
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(165deg, #f0fdf4 0%, #dcfce7 40%, #d4f7e0 70%, #fef9c3 100%);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* Pink corner accents */
+    .corner {
+      position: fixed;
+      width: 0;
+      height: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .corner--tl {
+      top: 0; left: 0;
+      border-top: 40px solid var(--pink);
+      border-right: 40px solid transparent;
+      opacity: 0.5;
+    }
+    .corner--tr {
+      top: 0; right: 0;
+      border-top: 40px solid var(--pink);
+      border-left: 40px solid transparent;
+      opacity: 0.5;
+    }
+
+    /* Decorative floating blobs */
+    .blob {
+      position: fixed;
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      opacity: 0.35;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+    }
+    .blob--1 {
+      width: 260px; height: 260px;
+      top: -60px; right: -40px;
+      background: linear-gradient(135deg, var(--green-200), var(--green-400));
+    }
+    .blob--2 {
+      width: 180px; height: 180px;
+      bottom: -40px; left: -30px;
+      background: linear-gradient(135deg, #fef9c3, #fbbf24);
+      opacity: 0.25;
+      animation-delay: -3s;
+      animation-duration: 8s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-18px) rotate(4deg); }
+    }
+
+    /* Main card */
+    .card {
+      position: relative;
+      z-index: 10;
+      max-width: 560px;
+      width: 100%;
+      margin: 40px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* Wordmark */
+    .wordmark { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .wordmark__name {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .wordmark__tagline {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    /* Heading */
+    .heading {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--text-dark);
+    }
+
+    /* Sub-copy */
+    .subcopy {
+      font-size: 17px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    /* Email form */
+    .form {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .form__input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 20px;
+      border-radius: 100px;
+      border: 2px solid var(--green-200);
+      font-size: 15px;
+      font-family: inherit;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      outline: none;
+      color: var(--text-dark);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form__input::placeholder { color: var(--text-light); }
+    .form__input:focus {
+      border-color: var(--green-500);
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+    }
+    .form__input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .25s cubic-bezier(0.34,1.56,0.64,1), box-shadow .25s, background .25s;
+    }
+    .btn:hover  { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn--primary {
+      background: var(--green-500);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(34,197,94,0.3);
+    }
+    .btn--primary:hover {
+      background: var(--green-600);
+      box-shadow: 0 6px 24px rgba(34,197,94,0.4);
+    }
+    .btn--primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+    /* Success message */
+    .success {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green-700);
+      background: rgba(255,255,255,0.7);
+      padding: 14px 24px;
+      border-radius: 100px;
+      border: 2px solid var(--green-200);
+    }
+    .success.visible { display: inline-flex; }
+
+    /* Trust badges */
+    .badges { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-700);
+      background: rgba(255,255,255,0.6);
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1.5px solid var(--green-100);
+    }
+
+    /* Footer */
+    .footer { font-size: 12px; color: var(--text-light); font-weight: 600; }
+
+    @media (max-width: 480px) {
+      .heading { font-size: 36px; letter-spacing: -1px; }
+      .wordmark__name { font-size: 32px; }
+      .corner--tl { border-top-width: 28px; border-right-width: 28px; }
+      .corner--tr { border-top-width: 28px; border-left-width: 28px; }
+      .blob--1 { width: 180px; height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner corner--tl"></div>
+  <div class="corner corner--tr"></div>
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+
+  <main class="card">
+
+    <div class="wordmark">
+      <span class="wordmark__name">ZeeVeez™</span>
+      <span class="wordmark__tagline">All-Natural Gummy Snacks &nbsp;·&nbsp; Made in Texas 🤠</span>
+    </div>
+
+    <h1 class="heading">Something delicious<br>is coming.</h1>
+
+    <p class="subcopy">
+      We're crafting the next chapter of ZeeVeez.<br>
+      White Honey Apple — one flavor says it all.
+    </p>
+
+    <form class="form" id="notifyForm" novalidate>
+      <input
+        class="form__input"
+        id="emailInput"
+        type="email"
+        placeholder="your@email.com"
+        autocomplete="email"
+        required
+      />
+      <button class="btn btn--primary" type="submit" id="submitBtn">Notify Me</button>
+    </form>
+
+    <div class="success" id="successMsg">✅&nbsp; You're on the list — we'll be in touch!</div>
+
+    <div class="badges">
+      <span class="badge">🌿 Plant-Based</span>
+      <span class="badge">🍯 White Honey Apple</span>
+      <span class="badge">⭐ Made in Texas</span>
+    </div>
+
+    <p class="footer">© 2025 ZV3, LLC &nbsp;·&nbsp; zeeveez.com</p>
+
+  </main>
+
+  <script>
+    const form       = document.getElementById('notifyForm');
+    const input      = document.getElementById('emailInput');
+    const submitBtn  = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.focus();
+        input.style.borderColor = '#ef4444';
+        setTimeout(() => (input.style.borderColor = ''), 1200);
+        return;
+      }
+
+      input.disabled = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.classList.add('visible');
+        } else {
+          throw new Error('non-ok');
+        }
+      } catch {
+        input.disabled = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Notify Me';
+        input.style.borderColor = '#ef4444';
+        setTimeout(() => (input.style.borderColor = ''), 1800);
+      }
+    });
+  </script>
+
+</body>
 </html>
