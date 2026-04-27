@@ -96,11 +96,11 @@ function App() {
   const [carouselDirection, setCarouselDirection] = useState('next')
 
   const nonprofits = [
-    { logo: emancipetLogo, name: 'Emancipet', desc: 'Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.', url: 'https://www.emancipet.org/' },
-    { logo: marbridgeLogo, name: 'Marbridge', desc: 'Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.', url: 'https://www.marbridge.org/' },
-    { logo: mealswheelsLogo, name: 'Meals on Wheels', desc: 'Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.', url: 'https://www.mealsonwheelsamerica.org/' },
-    { logo: petsaliveLogo, name: 'Pets Alive', desc: 'Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.', url: 'https://www.austinpetsalive.org/' },
-    { logo: spcaLogo, name: 'SPCA', desc: 'Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.', url: 'https://www.spca.org/' },
+    { logo: emancipetLogo, name: 'Emancipet', desc: 'Affordable spay and neuter services building a healthier, happier pet community across Central Texas.', url: 'https://www.emancipet.org/' },
+    { logo: marbridgeLogo, name: 'Marbridge', desc: 'Life-changing residential and day programs empowering adults with intellectual and developmental disabilities in Texas.', url: 'https://www.marbridge.org/' },
+    { logo: mealswheelsLogo, name: 'Meals on Wheels', desc: 'Hot meals and warm companionship delivered to seniors in need — because no one should go hungry or feel alone.', url: 'https://www.mealsonwheelsamerica.org/' },
+    { logo: petsaliveLogo, name: 'Pets Alive', desc: 'A no-kill rescue giving animals in crisis a second chance — sanctuary, care, and a path to a forever home.', url: 'https://www.austinpetsalive.org/' },
+    { logo: spcaLogo, name: 'SPCA', desc: 'Fighting animal cruelty and championing the humane treatment of animals across the nation.', url: 'https://www.spca.org/' },
   ]
 
   const handleCarouselPrev = useCallback(() => {
@@ -181,11 +181,9 @@ function App() {
   const [givesRef, givesVis] = useReveal()
   const [nonprofitRef, nonprofitVis] = useReveal()
   const [flavorRef, flavorVis] = useReveal()
-  const [processRef, processVis] = useReveal()
   const [statsRef, statsVis] = useReveal(0.3)
   const [featRef, featVis] = useReveal()
   const [ingredRef, ingredVis] = useReveal()
-  const [notRef, notVis] = useReveal()
   const [testRef, testVis] = useReveal()
   const [trustRef, trustVis] = useReveal(0.2)
   const [faqRef, faqVis] = useReveal()
@@ -276,7 +274,6 @@ function App() {
                 <span>Get Early Access</span>
                 <ArrowIcon />
               </a>
-              <a href="#about" className="btn btn--ghost">Our Story</a>
             </div>
             <div className="hero__trust">
               <div className="hero__trust-badge"><CheckIcon /><span>All Natural</span></div>
@@ -286,30 +283,13 @@ function App() {
             </div>
           </div>
           <div className="hero__visual">
-            <div className="hero__gummy-scene">
+            <div className="hero__product-wrap">
               <div className="hero__glow" aria-hidden="true" />
-              <div className="apple-lg apple-lg--green">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-              </div>
-              <div className="apple-lg apple-lg--green apple-lg--center">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth apple-lg__mouth--big" />
-                </div>
-                <div className="apple-lg__leaf"></div>
-              </div>
-              <div className="apple-lg apple-lg--green">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-              </div>
+              <img
+                src="/assets/bag.png"
+                alt="ZeeVeez White Honey Apple Gummy Snacks — 1oz pouch"
+                className="hero__bag-img"
+              />
             </div>
           </div>
         </div>
@@ -339,82 +319,14 @@ function App() {
         </div>
       </div>
 
-      {/* ── About ── */}
-      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
-        <div className="about__inner">
-          <div className="about__media">
-            <div className="about__img-wrap">
-              <div className="about__pattern" aria-hidden="true" />
-              <div className="about__illustration">
-                <div className="about__tree" aria-hidden="true">
-                  <div className="tree__trunk" />
-                  <div className="tree__canopy" />
-                  <div className="tree__apple tree__apple--1" />
-                  <div className="tree__apple tree__apple--2" />
-                  <div className="tree__apple tree__apple--3" />
-                </div>
-                <div className="about__bee" aria-hidden="true">
-                  <div className="bee__body" />
-                  <div className="bee__wing" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="about__text">
-            <span className="section-tag">Our Story</span>
-            <h2>Born in Houston, Texas: <em>one flavor says it all.</em></h2>
-            <p>
-              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
-              could be better. Better ingredients, better taste, better impact.
-              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
-              ingredients, real pectin, and natural flavors &mdash; no gelatin,
-              no synthetic dyes, no compromises.
-            </p>
-            <p>
-              We taste every batch. If it doesn't make us say "just one more,"
-              it doesn't leave the facility.
-            </p>
-            <div className="about__highlights">
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127807;</div>
-                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127855;</div>
-                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
-                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Gives Back ── */}
-      <section ref={givesRef} className={`gives ${givesVis ? 'reveal' : ''}`}>
-        <div className="gives__inner">
-          <div className="gives__icon"><HeartIcon /></div>
-          <div className="gives__text">
-            <h2>A gummy snack that gives back</h2>
-            <p>
-              Savor the taste knowing a portion of our profits go to selected
-              charities benefiting animals and children. Every pouch you enjoy
-              helps make a real difference. Learn more at zeeveez.com.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Non-Profits/Partners ── */}
       <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`}>
         <div className="nonprofits__bg" aria-hidden="true"></div>
         <div className="nonprofits__inner">
           <div className="nonprofits__header">
-            <span className="section-tag">Making a Difference</span>
+            <span className="section-tag">Giving Back</span>
             <h2>Our charity partners</h2>
-            <p>A portion of ZeeVeez profits go to these organizations dedicated to helping animals and children in Texas.</p>
+            <p>Every ZeeVeez purchase helps fund organizations making a real difference for animals and children in Texas.</p>
           </div>
           <div className="nonprofits__carousel">
             <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
@@ -462,6 +374,69 @@ function App() {
         </div>
       </section>
 
+      {/* ── About ── */}
+      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
+        <div className="about__inner">
+          <div className="about__media">
+            <div className="about__img-wrap">
+              <img
+                src="/assets/lifestyle.png"
+                alt="ZeeVeez White Honey Apple gummies"
+                className="about__lifestyle-img"
+              />
+            </div>
+          </div>
+          <div className="about__text">
+            <span className="section-tag">The Origin Story</span>
+            <h2>Born in Houston, Texas: <em>one flavor says it all.</em></h2>
+            <p>
+              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
+              could be better. Better ingredients, better taste, better impact.
+              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
+              ingredients, real pectin, and natural flavors &mdash; no gelatin,
+              no synthetic dyes, no compromises.
+            </p>
+            <p>
+              We taste every batch. If it doesn't make us say "just one more,"
+              it doesn't leave the facility.
+            </p>
+            <div className="about__highlights">
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127807;</div>
+                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
+              </div>
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127855;</div>
+                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
+              </div>
+              <div className="about__hl">
+                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
+                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
+              </div>
+            </div>
+            <div className="about__gives-callout">
+              <HeartIcon />
+              <span>A gummy snack that gives back</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gives Back ── */}
+      <section ref={givesRef} className={`gives ${givesVis ? 'reveal' : ''}`}>
+        <div className="gives__inner">
+          <div className="gives__icon"><HeartIcon /></div>
+          <div className="gives__text">
+            <h2>A gummy snack that gives back</h2>
+            <p>
+              Savor the taste knowing a portion of our profits go to selected
+              charities benefiting animals and children. Every pouch you enjoy
+              helps make a real difference. Learn more at zeeveez.com.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── Flagship Flavor ── */}
       <section ref={flavorRef} className={`flavor ${flavorVis ? 'reveal' : ''}`} id="flavor">
         <div className="flavor__bg" aria-hidden="true">
@@ -499,6 +474,13 @@ function App() {
                   <p>A full 1oz pouch for just 80 calories. 0g fat, made in a peanut-free facility.</p>
                 </div>
               </div>
+              <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#11088;</div>
+                <div>
+                  <strong>Crafted in Texas</strong>
+                  <p>Born in Houston, perfected in Fort Worth. Two years in the making — worth every bite.</p>
+                </div>
+              </div>
             </div>
             <div className="flavor__nutrition">
               <div className="flavor__nut-item"><strong>80</strong><span>Calories</span></div>
@@ -513,41 +495,12 @@ function App() {
               <div className="flavor__ring flavor__ring--1" aria-hidden="true" />
               <div className="flavor__ring flavor__ring--2" aria-hidden="true" />
               <div className="flavor__ring flavor__ring--3" aria-hidden="true" />
-              <div className="apple-lg apple-lg--green apple-lg--flavor">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-                <div className="apple-lg__leaf"></div>
-              </div>
+              <img
+                src="/assets/bag.png"
+                alt="ZeeVeez White Honey Apple Gummy Snacks"
+                className="flavor__bag-img"
+              />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── How We Make It ── */}
-      <section ref={processRef} className={`process ${processVis ? 'reveal' : ''}`}>
-        <div className="process__inner">
-          <div className="process__header">
-            <span className="section-tag">Our Process</span>
-            <h2>Born in Houston, manufactured in Fort Worth</h2>
-            <p>Every pouch goes through a careful process — no shortcuts.</p>
-          </div>
-          <div className="process__timeline">
-            {[
-              { step: '01', title: 'Source', desc: 'We start with organic tapioca syrup and organic cane sugar. Every ingredient is carefully selected and traceable.', icon: '&#127806;' },
-              { step: '02', title: 'Blend', desc: 'Natural flavors are blended with water and our organic base. No concentrates, no high-fructose corn syrup, no shortcuts.', icon: '&#129514;' },
-              { step: '03', title: 'Craft', desc: 'Plant-based pectin gives the perfect chew. Each batch is cooked slowly in our peanut-free Fort Worth facility.', icon: '&#128293;' },
-              { step: '04', title: 'Taste', desc: 'Our team tastes every batch. If it doesn\'t meet the ZeeVeez standard, it doesn\'t ship. Period.', icon: '&#11088;' },
-            ].map(({ step, title, desc, icon }) => (
-              <div className="process__step" key={step}>
-                <div className="process__step-num">{step}</div>
-                <div className="process__step-icon" dangerouslySetInnerHTML={{ __html: icon }} />
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -630,20 +583,17 @@ function App() {
             ))}
           </div>
           <p className="ingr__footnote">Made in a peanut-free facility. That's the full list — no fine print.</p>
-        </div>
-      </section>
 
-      {/* ── What's NOT inside ── */}
-      <section ref={notRef} className={`not ${notVis ? 'reveal' : ''}`}>
-        <div className="not__inner">
-          <h2>What you'll <em>never</em> find in a ZeeVeez</h2>
-          <div className="not__grid">
-            {['Artificial Flavors','Synthetic Dyes','High-Fructose Corn Syrup','Gelatin','Peanuts','GMOs'].map(item => (
-              <div className="not__item" key={item}>
-                <svg className="not__x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                <span>{item}</span>
-              </div>
-            ))}
+          <div className="ingr__not">
+            <h3>What you'll <em>never</em> find in a ZeeVeez</h3>
+            <div className="not__grid">
+              {['Artificial Flavors','Synthetic Dyes','High-Fructose Corn Syrup','Gelatin','Peanuts','GMOs'].map(item => (
+                <div className="not__item" key={item}>
+                  <svg className="not__x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -654,6 +604,7 @@ function App() {
           <div className="testimonials__header">
             <span className="section-tag">Early Tasters</span>
             <h2>What people are saying</h2>
+            <p className="testimonials__source">From our early-access taste testers — real feedback, unedited.</p>
           </div>
           <div className="testimonials__grid">
             {[
@@ -737,17 +688,17 @@ function App() {
           </p>
           <div className="cta__form">
             <form onSubmit={handleEmailSubmit} className="cta__form-input">
-              <input 
-                type="email" 
-                className="cta__input" 
-                placeholder="your@email.com" 
+              <input
+                type="email"
+                className="cta__input"
+                placeholder="your@email.com"
                 aria-label="Email address"
                 value={ctaEmail}
                 onChange={(e) => setCtaEmail(e.target.value)}
                 required
                 disabled={ctaLoading}
               />
-              <button 
+              <button
                 type="submit"
                 className="btn btn--primary btn--cta"
                 disabled={ctaLoading}
