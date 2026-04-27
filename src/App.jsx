@@ -44,22 +44,6 @@ function Counter({ end, suffix = '', duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
-/* ── FAQ Accordion item ── */
-function FaqItem({ q, a, open, onClick }) {
-  const bodyRef = useRef(null)
-  return (
-    <div className={`faq__item ${open ? 'faq__item--open' : ''}`}>
-      <button className="faq__q" onClick={onClick} aria-expanded={open}>
-        <span>{q}</span>
-        <svg className="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div className="faq__a-wrap" style={{ maxHeight: open ? bodyRef.current?.scrollHeight + 'px' : '0px' }}>
-        <div className="faq__a" ref={bodyRef}>{a}</div>
-      </div>
-    </div>
-  )
-}
-
 const ArrowIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
 )
@@ -72,8 +56,6 @@ const StarIcon = ({ size = 16, className = '' }) => (
 const HeartIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
 )
-
-/* ── Cloud SVG decoration ── */
 const Cloud = ({ className }) => (
   <svg className={`cloud ${className}`} viewBox="0 0 120 60" fill="currentColor" aria-hidden="true">
     <ellipse cx="60" cy="42" rx="50" ry="18" />
@@ -87,7 +69,6 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showTop, setShowTop] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
   const [ctaEmail, setCtaEmail] = useState('')
   const [ctaLoading, setCtaLoading] = useState(false)
   const [ctaMessage, setCtaMessage] = useState('')
@@ -146,24 +127,17 @@ function App() {
   const handleEmailSubmit = async (e) => {
     e.preventDefault()
     if (!ctaEmail) return
-
     setCtaLoading(true)
     setCtaError('')
     setCtaMessage('')
-
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: ctaEmail })
       })
-
       const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send email')
-      }
-
+      if (!response.ok) throw new Error(data.error || 'Failed to send email')
       setCtaMessage('Check your email! We sent you a special welcome message.')
       setCtaEmail('')
       setTimeout(() => setCtaMessage(''), 5000)
@@ -176,32 +150,20 @@ function App() {
     }
   }
 
-  const [heroRef, heroVis] = useReveal(0.1)
-  const [aboutRef, aboutVis] = useReveal()
-  const [givesRef, givesVis] = useReveal()
+  const [heroRef, heroVis]         = useReveal(0.1)
+  const [flavorRef, flavorVis]     = useReveal()
+  const [ingredRef, ingredVis]     = useReveal()
   const [nonprofitRef, nonprofitVis] = useReveal()
-  const [flavorRef, flavorVis] = useReveal()
-  const [statsRef, statsVis] = useReveal(0.3)
-  const [featRef, featVis] = useReveal()
-  const [ingredRef, ingredVis] = useReveal()
-  const [testRef, testVis] = useReveal()
-  const [trustRef, trustVis] = useReveal(0.2)
-  const [faqRef, faqVis] = useReveal()
-  const [ctaRef, ctaVis] = useReveal()
-
-  const faqs = [
-    { q: 'What makes ZeeVeez different from other gummy snacks?', a: 'Every ZeeVeez pouch is made with organic tapioca syrup, organic cane sugar, water, pectin, and natural flavors — that\'s it. No gelatin, no artificial flavors, no synthetic dyes. We spent two years perfecting a gummy snack that actually tastes like the real thing.' },
-    { q: 'Are ZeeVeez vegan and gluten-free?', a: 'Yes! ZeeVeez are 100% plant-based (we use pectin instead of gelatin), gluten-free, and made in a peanut-free facility. They\'re a snack the whole family can enjoy.' },
-    { q: 'Where are ZeeVeez made?', a: 'ZeeVeez was born in Houston, Texas and every pouch is manufactured by Bridge Industrial Group in Fort Worth, TX. We\'re a Texas company through and through.' },
-    { q: 'When will ZeeVeez be available to purchase?', a: 'We\'re launching very soon! Sign up for our email list to be the first to know when White Honey Apple drops. Early subscribers get access to exclusive launch-day pricing.' },
-    { q: 'How many calories are in a pouch?', a: 'Each 1oz pouch of ZeeVeez is just 80 calories with 0g fat, 0g protein, 20g carbs, and 14g total sugars. A guilt-free snack that\'s actually delicious.' },
-    { q: 'Will there be other flavors?', a: 'White Honey Apple is our signature flagship — and we have more flavors in development. Join our list to be the first to taste-test new releases.' },
-    { q: 'Does ZeeVeez give back to charity?', a: 'Absolutely. A portion of every sale goes to selected charities benefiting animals and children. When you snack on ZeeVeez, you\'re helping make a difference.' },
-  ]
+  const [aboutRef, aboutVis]       = useReveal()
+  const [statsRef, statsVis]       = useReveal(0.3)
+  const [featRef, featVis]         = useReveal()
+  const [trustRef, trustVis]       = useReveal(0.2)
+  const [contactRef, contactVis]   = useReveal()
+  const [ctaRef, ctaVis]           = useReveal()
 
   return (
     <div className="site">
-      <a href="#about" className="skip-link">Skip to content</a>
+      <a href="#flavor" className="skip-link">Skip to content</a>
 
       {/* ── Nav ── */}
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
@@ -214,11 +176,11 @@ function App() {
           </button>
           {menuOpen && <div className="nav__overlay" onClick={closeMenu} />}
           <div className={`nav__links ${menuOpen ? 'nav__links--open' : ''}`}>
-            <a href="#about" onClick={closeMenu}>Our Story</a>
             <a href="#flavor" onClick={closeMenu}>White Honey Apple</a>
-            <a href="#ingredients" onClick={closeMenu}>Ingredients</a>
-            <a href="#faq" onClick={closeMenu}>FAQ</a>
-            <a href="#cta" className="nav__cta" onClick={closeMenu}>Get Notified</a>
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Shop</a>
+            <a href="#nonprofits" onClick={closeMenu}>Charities</a>
+            <a href="#about" onClick={closeMenu}>Our Story</a>
+            <a href="#contact" onClick={closeMenu}>Contact Us</a>
             <div className="nav__socials-mobile">
               <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="nav__social-link-mobile">
                 <img src={instagramLogo} alt="Instagram" className="nav__social-img-mobile" />
@@ -276,7 +238,6 @@ function App() {
               </a>
             </div>
             <div className="hero__trust">
-              <div className="hero__trust-badge"><CheckIcon /><span>All Natural</span></div>
               <div className="hero__trust-badge"><CheckIcon /><span>Plant-Based</span></div>
               <div className="hero__trust-badge"><CheckIcon /><span>Made in Texas</span></div>
               <div className="hero__trust-badge hero__trust-badge--heart"><HeartIcon /><span>Gives Back</span></div>
@@ -286,6 +247,7 @@ function App() {
             <div className="hero__product-wrap">
               <div className="hero__glow" aria-hidden="true" />
               <img
+                id="gummy-pouch-img"
                 src="/assets/bag.png"
                 alt="ZeeVeez White Honey Apple Gummy Snacks — 1oz pouch"
                 className="hero__bag-img"
@@ -293,7 +255,6 @@ function App() {
             </div>
           </div>
         </div>
-
         <div className="wave wave--hero" aria-hidden="true">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
             <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="#ffffff" />
@@ -318,127 +279,6 @@ function App() {
           ))}
         </div>
       </div>
-
-      {/* ── Non-Profits/Partners ── */}
-      <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`}>
-        <div className="nonprofits__bg" aria-hidden="true"></div>
-        <div className="nonprofits__inner">
-          <div className="nonprofits__header">
-            <span className="section-tag">Giving Back</span>
-            <h2>Our charity partners</h2>
-            <p>
-              Giving back is part of what we do. Every quarter, we support local children's and animal charities with a portion of our profits.<br /><br />
-              Interested in getting your charity involved? Contact us at <a href="mailto:howdy@zeeveez.com">howdy@zeeveez.com</a>
-            </p>
-          </div>
-          <div className="nonprofits__carousel">
-            <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <div className="nonprofits__carousel-track">
-              {nonprofits.map((nonprofit, idx) => {
-                const distance = (idx - carouselIndex + nonprofits.length) % nonprofits.length
-                const isActive = distance === 0
-                return (
-                  <a
-                    key={idx}
-                    href={nonprofit.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`nonprofit-card nonprofit-card--carousel nonprofit-card--${carouselDirection} nonprofit-card--stack nonprofit-card--stack-${distance}`}
-                    style={{
-                      zIndex: nonprofits.length - distance,
-                      opacity: distance > 2 ? 0 : 1,
-                      pointerEvents: isActive ? 'auto' : 'none'
-                    }}
-                  >
-                    <img src={nonprofit.logo} alt={nonprofit.name} className="nonprofit-card__logo" />
-                    <h3>{nonprofit.name}</h3>
-                    <p>{nonprofit.desc}</p>
-                    <div className="nonprofit-card__cta">Visit Website →</div>
-                  </a>
-                )
-              })}
-            </div>
-            <button className="nonprofits__btn nonprofits__btn--next" onClick={handleCarouselNext} aria-label="Next nonprofit">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-          <div className="nonprofits__dots">
-            {nonprofits.map((_, i) => (
-              <button
-                key={i}
-                className={`nonprofits__dot ${i === carouselIndex ? 'nonprofits__dot--active' : ''}`}
-                onClick={() => setCarouselIndex(i)}
-                aria-label={`Go to nonprofit ${i + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── About ── */}
-      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
-        <div className="about__inner">
-          <div className="about__media">
-            <div className="about__img-wrap">
-              <img
-                src="/assets/lifestyle.png"
-                alt="ZeeVeez White Honey Apple gummies"
-                className="about__lifestyle-img"
-              />
-            </div>
-          </div>
-          <div className="about__text">
-            <span className="section-tag">The Origin Story</span>
-            <h2>Born in Houston, Texas: <em>one flavor says it all.</em></h2>
-            <p>
-              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
-              could be better. Better ingredients, better taste, better impact.
-              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
-              ingredients, real pectin, and natural flavors &mdash; no gelatin,
-              no synthetic dyes, no compromises.
-            </p>
-            <p>
-              We taste every batch. If it doesn't make us say "just one more,"
-              it doesn't leave the facility.
-            </p>
-            <div className="about__highlights">
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127807;</div>
-                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127855;</div>
-                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
-                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
-              </div>
-            </div>
-            <div className="about__gives-callout">
-              <HeartIcon />
-              <span>A gummy snack that gives back</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Gives Back ── */}
-      <section ref={givesRef} className={`gives ${givesVis ? 'reveal' : ''}`}>
-        <div className="gives__inner">
-          <div className="gives__icon"><HeartIcon /></div>
-          <div className="gives__text">
-            <h2>A gummy snack that gives back</h2>
-            <p>
-              Savor the taste knowing a portion of our profits go to selected
-              charities benefiting animals and children. Every pouch you enjoy
-              helps make a real difference. Learn more at zeeveez.com.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* ── Flagship Flavor ── */}
       <section ref={flavorRef} className={`flavor ${flavorVis ? 'reveal' : ''}`} id="flavor">
@@ -508,59 +348,7 @@ function App() {
         </div>
       </section>
 
-      {/* ── Stats ── */}
-      <section ref={statsRef} className={`stats ${statsVis ? 'reveal' : ''}`}>
-        <div className="stats__inner">
-          <div className="stat">
-            <div className="stat__number"><Counter end={80} /></div>
-            <div className="stat__label">Calories Per Pouch</div>
-          </div>
-          <div className="stat__divider" />
-          <div className="stat">
-            <div className="stat__number"><Counter end={0} /></div>
-            <div className="stat__label">Artificial Additives</div>
-          </div>
-          <div className="stat__divider" />
-          <div className="stat">
-            <div className="stat__number"><Counter end={100} suffix="%" /></div>
-            <div className="stat__label">Plant-Based</div>
-          </div>
-          <div className="stat__divider" />
-          <div className="stat">
-            <div className="stat__number"><Counter end={0} suffix="g" /></div>
-            <div className="stat__label">Fat Per Serving</div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section ref={featRef} className={`features ${featVis ? 'reveal' : ''}`} id="why">
-        <div className="features__inner">
-          <div className="features__header">
-            <span className="section-tag">Why ZeeVeez</span>
-            <h2>Not your average gummy snack</h2>
-            <p>Every detail matters when you're making snacks the right way.</p>
-          </div>
-          <div className="features__grid">
-            {[
-              { icon: '&#127807;', title: 'Organic Ingredients', desc: 'Organic tapioca syrup and organic cane sugar form our base. We put everything on the label because we have nothing to hide.' },
-              { icon: '&#127858;', title: 'So Delish', desc: 'Two years of recipe testing to nail a flavor so good we bet you can\'t have just one. One flavor truly says it all.' },
-              { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
-              { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
-              { icon: '&#128155;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
-              { icon: '&#11088;', title: 'Made in Texas', desc: 'Born in Houston, manufactured in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
-            ].map(({ icon, title, desc }) => (
-              <div className="feature-card" key={title}>
-                <div className="feature-card__icon" dangerouslySetInnerHTML={{ __html: icon }} />
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Ingredients ── */}
+      {/* ── Ingredients (inside White Honey Apple section) ── */}
       <section ref={ingredRef} className={`ingr ${ingredVis ? 'reveal' : ''}`} id="ingredients">
         <div className="ingr__inner">
           <div className="ingr__header">
@@ -586,7 +374,6 @@ function App() {
             ))}
           </div>
           <p className="ingr__footnote">Made in a peanut-free facility. That's the full list — no fine print.</p>
-
           <div className="ingr__not">
             <h3>What you'll <em>never</em> find in a ZeeVeez</h3>
             <div className="not__grid">
@@ -601,36 +388,168 @@ function App() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section ref={testRef} className={`testimonials ${testVis ? 'reveal' : ''}`}>
+      {/* ── Charity Partners ── */}
+      <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`} id="nonprofits">
+        <div className="nonprofits__bg" aria-hidden="true"></div>
+        <div className="nonprofits__inner">
+          <div className="nonprofits__header">
+            <span className="section-tag">Giving Back</span>
+            <h2>Our charity partners</h2>
+            <p>
+              Savor the taste knowing a portion of our profits go to selected charities
+              benefiting animals and children. Every pouch you enjoy helps make a real difference.
+            </p>
+            <p className="nonprofits__cta-line">
+              Giving back is part of what we do. Every quarter, we support local children's and
+              animal charities with a portion of our profits.<br /><br />
+              Interested in getting your charity involved? Contact us at{' '}
+              <a href="mailto:howdy@zeeveez.com">howdy@zeeveez.com</a>
+            </p>
+          </div>
+          <div className="nonprofits__carousel">
+            <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div className="nonprofits__carousel-track">
+              {nonprofits.map((nonprofit, idx) => {
+                const distance = (idx - carouselIndex + nonprofits.length) % nonprofits.length
+                const isActive = distance === 0
+                return (
+                  <a
+                    key={idx}
+                    href={nonprofit.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`nonprofit-card nonprofit-card--carousel nonprofit-card--${carouselDirection} nonprofit-card--stack nonprofit-card--stack-${distance}`}
+                    style={{
+                      zIndex: nonprofits.length - distance,
+                      opacity: distance > 2 ? 0 : 1,
+                      pointerEvents: isActive ? 'auto' : 'none'
+                    }}
+                  >
+                    <img src={nonprofit.logo} alt={nonprofit.name} className="nonprofit-card__logo" />
+                    <h3>{nonprofit.name}</h3>
+                    <p>{nonprofit.desc}</p>
+                    <div className="nonprofit-card__cta">Visit Website →</div>
+                  </a>
+                )
+              })}
+            </div>
+            <button className="nonprofits__btn nonprofits__btn--next" onClick={handleCarouselNext} aria-label="Next nonprofit">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div className="nonprofits__dots">
+            {nonprofits.map((_, i) => (
+              <button
+                key={i}
+                className={`nonprofits__dot ${i === carouselIndex ? 'nonprofits__dot--active' : ''}`}
+                onClick={() => setCarouselIndex(i)}
+                aria-label={`Go to nonprofit ${i + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── About ── */}
+      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
+        <div className="about__inner">
+          <div className="about__media">
+            <div className="about__img-wrap">
+              <img
+                src="/assets/lifestyle.png"
+                alt="ZeeVeez White Honey Apple gummies"
+                className="about__lifestyle-img"
+              />
+            </div>
+          </div>
+          <div className="about__text">
+            <span className="section-tag">The Origin Story</span>
+            <h2>Made with Love in Texas</h2>
+            <p>
+              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
+              could be better. Better ingredients, better taste, better impact.
+              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
+              ingredients, real pectin, and natural flavors &mdash; no gelatin,
+              no synthetic dyes, no compromises.
+            </p>
+            <div className="about__highlights">
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127807;</div>
+                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
+              </div>
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127855;</div>
+                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
+              </div>
+              <div className="about__hl">
+                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
+                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section ref={statsRef} className={`stats ${statsVis ? 'reveal' : ''}`}>
+        <div className="stats__inner">
+          <div className="stat">
+            <div className="stat__number"><Counter end={80} /></div>
+            <div className="stat__label">Calories Per Pouch</div>
+          </div>
+          <div className="stat__divider" />
+          <div className="stat">
+            <div className="stat__number"><Counter end={0} /></div>
+            <div className="stat__label">Artificial Additives</div>
+          </div>
+          <div className="stat__divider" />
+          <div className="stat">
+            <div className="stat__number"><Counter end={100} suffix="%" /></div>
+            <div className="stat__label">Plant-Based</div>
+          </div>
+          <div className="stat__divider" />
+          <div className="stat">
+            <div className="stat__number"><Counter end={0} suffix="g" /></div>
+            <div className="stat__label">Fat Per Serving</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why ZeeVeez ── */}
+      <section ref={featRef} className={`features ${featVis ? 'reveal' : ''}`} id="why">
+        <div className="features__inner">
+          <div className="features__header">
+            <span className="section-tag">Why ZeeVeez</span>
+            <h2>Not your average gummy snack</h2>
+            <p>Every detail matters when you're making snacks the right way.</p>
+          </div>
+          <div className="features__grid">
+            {[
+              { icon: '&#127807;', title: 'Organic Ingredients', desc: 'Organic tapioca syrup and organic cane sugar form our base. We put everything on the label because we have nothing to hide.' },
+              { icon: '&#127858;', title: 'So Delish', desc: 'Two years of recipe testing to nail a flavor so good we bet you can\'t have just one. One flavor truly says it all.' },
+              { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
+              { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
+              { icon: '&#10084;&#65039;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
+              { icon: '&#11088;', title: 'Made in Texas', desc: 'Born in Houston, manufactured in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
+            ].map(({ icon, title, desc }) => (
+              <div className="feature-card" key={title}>
+                <div className="feature-card__icon" dangerouslySetInnerHTML={{ __html: icon }} />
+                <h3>{title}</h3>
+                <p>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials (hidden until real reviews available) ── */}
+      <section style={{ display: 'none' }} aria-hidden="true">
         <div className="testimonials__inner">
           <div className="testimonials__header">
             <span className="section-tag">Early Tasters</span>
             <h2>What people are saying</h2>
-            <p className="testimonials__source">From our early-access taste testers — real feedback, unedited.</p>
-          </div>
-          <div className="testimonials__grid">
-            {[
-              { name: 'Sarah M.', loc: 'Houston, TX', text: 'I\'ve tried every "healthy" gummy on the market. ZeeVeez actually tastes GOOD — I don\'t feel like I\'m eating cardboard for my health. My whole family obsessed.', stars: 5 },
-              { name: 'James R.', loc: 'Dallas, TX', text: 'The ingredient list is so clean it\'s almost suspicious. No weird stuff, no mystery additives. These are what gummies should have been all along.', stars: 5 },
-              { name: 'Maria L.', loc: 'Austin, TX', text: 'Started buying them because of the charity tie-in. Now I buy them because they\'re genuinely the best-tasting snack I\'ve had. Win-win.', stars: 5 },
-              { name: 'Devon T.', loc: 'Fort Worth, TX', text: 'As a parent, finding snacks my kids actually want TO eat that I feel good ABOUT giving them? This changed the game. Plus they\'re made right here in Texas!', stars: 5 },
-              { name: 'Alex K.', loc: 'San Antonio, TX', text: 'Plant-based, no gelatin, actual organic ingredients — and they still taste like an actual treat. That\'s rare. Seriously rare. Very impressed.', stars: 5 },
-            ].map(({ name, loc, text, stars }) => (
-              <div className="test-card" key={name}>
-                <div className="test-card__stars">
-                  {Array.from({ length: stars }).map((_, i) => <StarIcon key={i} size={16} className="test-card__star" />)}
-                </div>
-                <p className="test-card__text">&ldquo;{text}&rdquo;</p>
-                <div className="test-card__author">
-                  <div className="test-card__avatar">{name.charAt(0)}</div>
-                  <div>
-                    <div className="test-card__name">{name}</div>
-                    <div className="test-card__loc">{loc}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -659,17 +578,29 @@ function App() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section ref={faqRef} className={`faq ${faqVis ? 'reveal' : ''}`} id="faq">
-        <div className="faq__inner">
-          <div className="faq__header">
-            <span className="section-tag">FAQ</span>
-            <h2>Got questions? We've got answers.</h2>
+      {/* ── Contact Us ── */}
+      <section ref={contactRef} className={`contact ${contactVis ? 'reveal' : ''}`} id="contact">
+        <div className="contact__inner">
+          <div className="contact__header">
+            <span className="section-tag">Contact</span>
+            <h2>Get in touch.</h2>
           </div>
-          <div className="faq__list">
-            {faqs.map((f, i) => (
-              <FaqItem key={i} q={f.q} a={f.a} open={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)} />
-            ))}
+          <div className="contact__grid">
+            <a href="mailto:howdy@zeeveez.com" className="contact__card">
+              <div className="contact__card-icon">✉️</div>
+              <div className="contact__card-label">General Inquiries</div>
+              <div className="contact__card-value">howdy@zeeveez.com</div>
+            </a>
+            <a href="mailto:howdy@zeeveez.com?subject=Wholesale%20Request" className="contact__card">
+              <div className="contact__card-icon">🤝</div>
+              <div className="contact__card-label">Wholesale Requests</div>
+              <div className="contact__card-value">howdy@zeeveez.com</div>
+            </a>
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="contact__card">
+              <div className="contact__card-icon">📦</div>
+              <div className="contact__card-label">Shop on Amazon</div>
+              <div className="contact__card-value">amazon.com</div>
+            </a>
           </div>
         </div>
       </section>
@@ -686,8 +617,8 @@ function App() {
         <div className="cta__inner">
           <h2>Ready to taste the difference?</h2>
           <p>
-            ZeeVeez White Honey Apple gummy snacks are launching soon. Sign up
-            and be the first to get a pouch.
+            ZeeVeez White Honey Apple gummy snacks are launching soon.<br />
+            Sign up and be the first to get a pouch.
           </p>
           <div className="cta__form">
             <form onSubmit={handleEmailSubmit} className="cta__form-input">
@@ -725,14 +656,10 @@ function App() {
               <a href="#" className="foot__logo">
                 <img src="/logo.png" alt="ZeeVeez™ Gummy Snacks" className="foot__logo-img" />
               </a>
-              <p>One flavor says it all.</p>
+              <p className="foot__tagline">One flavor says it all.</p>
               <div className="foot__texas">
                 <StarIcon size={14} className="foot__texas-star" />
-                <span>Born in Houston, TX &middot; Manufactured in Fort Worth, TX</span>
-              </div>
-              <div className="foot__company">
-                ZV3, LLC &middot; Bridge Industrial Group<br />
-                2615 Ludelle Street, Fort Worth, TX 76105
+                <span>Born in Houston, TX<br />Manufactured in Fort Worth, TX</span>
               </div>
             </div>
             <div className="foot__cols">
@@ -745,8 +672,8 @@ function App() {
               <div className="foot__col">
                 <h4>Company</h4>
                 <a href="#about">Our Story</a>
-                <a href="#">Giving Back</a>
-                <a href="#">Press</a>
+                <a href="#nonprofits">Giving Back</a>
+                <a href="#contact">Contact</a>
               </div>
               <div className="foot__col">
                 <h4>Connect</h4>
