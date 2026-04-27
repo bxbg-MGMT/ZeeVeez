@@ -326,7 +326,10 @@ function App() {
           <div className="nonprofits__header">
             <span className="section-tag">Giving Back</span>
             <h2>Our charity partners</h2>
-            <p>Every ZeeVeez purchase helps fund organizations making a real difference for animals and children in Texas.</p>
+            <p>
+              Giving back is part of what we do. Every quarter, we support local children's and animal charities with a portion of our profits.<br /><br />
+              Interested in getting your charity involved? Contact us at <a href="mailto:howdy@zeeveez.com">howdy@zeeveez.com</a>
+            </p>
           </div>
           <div className="nonprofits__carousel">
             <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
