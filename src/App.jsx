@@ -468,6 +468,13 @@ function App() {
 
       {/* ── About ── */}
       <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
+        <div className="about__floaters" aria-hidden="true">
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="about__gummy about__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="about__gummy about__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--5" />
+        </div>
         <div className="about__inner">
           <div className="about__media">
             <div className="about__img-wrap">
@@ -624,9 +631,12 @@ function App() {
         <div className="cta__particles" aria-hidden="true">
           <Cloud className="cloud--cta-1" />
           <Cloud className="cloud--cta-2" />
-          <div className="cta__p cta__p--1" />
-          <div className="cta__p cta__p--2" />
-          <div className="cta__p cta__p--3" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--6" />
         </div>
         <div className="cta__inner">
           <h2>Ready to taste the difference?</h2>
@@ -667,7 +677,7 @@ function App() {
         <div className="buy__inner">
           <div className="buy__header">
             <span className="section-tag">Where to Buy</span>
-            <h2>Ready, set, snack.</h2>
+            <h2>Snack first. Regret never.</h2>
             <p>Pick up a pouch and taste what the hype is about.</p>
           </div>
           <div className="buy__grid">

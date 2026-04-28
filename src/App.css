@@ -243,7 +243,7 @@
 .press__logo:hover { opacity:0.65; }
 
 /* ═══════════════════════════════════════════════ ABOUT ═══════════════════════════════════════════════ */
-.about { padding:120px 24px; }
+.about { padding:120px 24px; position:relative; overflow:hidden; }
 .about__inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1.15fr; gap:80px; align-items:center; }
 .about__media { display:flex; justify-content:center; }
 .about__img-wrap { position:relative; width:380px; height:380px; }
@@ -721,3 +721,21 @@ html { scroll-behavior:smooth; }
 @media (max-width:768px) {
   .buy { padding:60px 20px; }
 }
+
+/* ── About section gummy floaters ── */
+.about__floaters { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.about__gummy { position:absolute; pointer-events:none; object-fit:contain; }
+.about__gummy--1 { width:58px;  top:8%;     left:2%;   animation:float 6.2s ease-in-out infinite;         opacity:0.55; transform:rotate(-18deg); }
+.about__gummy--2 { width:46px;  top:20%;    right:2%;  animation:floatSlow 7.4s ease-in-out infinite 1s;  opacity:0.5;  transform:rotate(24deg);  }
+.about__gummy--3 { width:52px;  bottom:12%; left:3%;   animation:float 5.8s ease-in-out infinite 2.2s;   opacity:0.52; transform:rotate(12deg);  }
+.about__gummy--4 { width:40px;  bottom:22%; right:3%;  animation:floatSlow 6.6s ease-in-out infinite .6s; opacity:0.48; transform:rotate(-30deg); }
+.about__gummy--5 { width:50px;  top:52%;    left:1%;   animation:float 8.1s ease-in-out infinite 1.4s;   opacity:0.45; transform:rotate(40deg);  }
+
+/* ── CTA section gummy floaters ── */
+.cta__gummy { position:absolute; pointer-events:none; object-fit:contain; }
+.cta__gummy--1 { width:54px;  top:10%;    left:5%;   animation:float 5.6s ease-in-out infinite;         opacity:0.5;  transform:rotate(-16deg); }
+.cta__gummy--2 { width:44px;  top:22%;    right:7%;  animation:floatSlow 7.2s ease-in-out infinite 1s;  opacity:0.45; transform:rotate(22deg);  }
+.cta__gummy--3 { width:62px;  bottom:16%; left:8%;   animation:float 7s ease-in-out infinite 2s;        opacity:0.5;  transform:rotate(10deg);  }
+.cta__gummy--4 { width:42px;  bottom:28%; right:6%;  animation:floatSlow 5.4s ease-in-out infinite .5s; opacity:0.48; transform:rotate(-28deg); }
+.cta__gummy--5 { width:50px;  top:55%;    right:14%; animation:float 6.4s ease-in-out infinite 1.6s;   opacity:0.42; transform:rotate(36deg);  }
+.cta__gummy--6 { width:38px;  top:68%;    left:14%;  animation:floatSlow 5s ease-in-out infinite 2.5s;  opacity:0.4;  transform:rotate(-8deg);  }
