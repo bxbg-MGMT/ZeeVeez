@@ -558,25 +558,6 @@ function App() {
         </div>
       </section>
 
-      {/* ── Where to Buy ── */}
-      <section ref={buyRef} className={`buy ${buyVis ? 'reveal' : ''}`} id="buy">
-        <div className="buy__inner">
-          <div className="buy__header">
-            <span className="section-tag">Where to Buy</span>
-            <h2>Get yours today</h2>
-            <p>Pick up a pouch and taste what the hype is about.</p>
-          </div>
-          <div className="buy__grid">
-            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="buy__card">
-              <img src={amazonLogo} alt="Amazon" className="buy__card-logo buy__card-logo--amazon" />
-              <div className="buy__card-name">Amazon</div>
-              <div className="buy__card-sub">Ships nationwide · Free returns</div>
-            </a>
-          </div>
-          <p className="buy__soon">More retailers coming soon.</p>
-        </div>
-      </section>
-
       {/* ── Testimonials (hidden until real reviews available) ── */}
       <section style={{ display: 'none' }} aria-hidden="true">
         <div className="testimonials__inner">
@@ -678,6 +659,25 @@ function App() {
             {ctaError && <div className="cta__message cta__message--error">{ctaError}</div>}
           </div>
           <p className="cta__note">No spam, ever. Just a heads-up when we launch.</p>
+        </div>
+      </section>
+
+      {/* ── Where to Buy ── */}
+      <section ref={buyRef} className={`buy ${buyVis ? 'reveal' : ''}`} id="buy">
+        <div className="buy__inner">
+          <div className="buy__header">
+            <span className="section-tag">Where to Buy</span>
+            <h2>Ready, set, snack.</h2>
+            <p>Pick up a pouch and taste what the hype is about.</p>
+          </div>
+          <div className="buy__grid">
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="buy__card">
+              <img src={amazonLogo} alt="Amazon" className="buy__card-logo buy__card-logo--amazon" />
+              <div className="buy__card-name">Amazon</div>
+              <div className="buy__card-sub">Ships nationwide · Free returns</div>
+            </a>
+          </div>
+          <p className="buy__soon">More retailers coming soon.</p>
         </div>
       </section>
 
