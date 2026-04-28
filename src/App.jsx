@@ -158,6 +158,7 @@ function App() {
   const [statsRef, statsVis]       = useReveal(0.3)
   const [featRef, featVis]         = useReveal()
   const [trustRef, trustVis]       = useReveal(0.2)
+  const [buyRef, buyVis]           = useReveal()
   const [contactRef, contactVis]   = useReveal()
   const [ctaRef, ctaVis]           = useReveal()
 
@@ -212,12 +213,16 @@ function App() {
         <div className="hero__floaters" aria-hidden="true">
           <Cloud className="cloud--hero-1" />
           <Cloud className="cloud--hero-2" />
-          <div className="floater floater--1" />
-          <div className="floater floater--2" />
-          <div className="floater floater--3" />
-          <div className="floater floater--4" />
-          <div className="floater floater--5" />
-          <div className="floater floater--6" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--6" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--7" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--8" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--9" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--10" />
         </div>
         <div className="hero__content">
           <div className="hero__text">
@@ -285,6 +290,14 @@ function App() {
         <div className="flavor__bg" aria-hidden="true">
           <Cloud className="cloud--flavor-1" />
           <Cloud className="cloud--flavor-2" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--6" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--7" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--8" />
         </div>
         <div className="flavor__inner">
           <div className="flavor__text">
@@ -360,6 +373,7 @@ function App() {
             {[
               { emoji: '&#127846;', name: 'Organic Tapioca Syrup', note: 'Clean, natural sweetener base' },
               { emoji: '&#127854;', name: 'Organic Cane Sugar', note: 'Just enough sweetness' },
+              { emoji: '&#127855;', name: 'White Honey', note: 'Delicate floral sweetness' },
               { emoji: '&#128167;', name: 'Water', note: 'Pure and simple' },
               { emoji: '&#129389;', name: 'Pectin', note: 'Plant-based, perfect chew' },
               { emoji: '&#127811;', name: 'Natural Flavors', note: 'Less than 2% — real taste' },
@@ -544,6 +558,25 @@ function App() {
         </div>
       </section>
 
+      {/* ── Where to Buy ── */}
+      <section ref={buyRef} className={`buy ${buyVis ? 'reveal' : ''}`} id="buy">
+        <div className="buy__inner">
+          <div className="buy__header">
+            <span className="section-tag">Where to Buy</span>
+            <h2>Get yours today</h2>
+            <p>Pick up a pouch and taste what the hype is about.</p>
+          </div>
+          <div className="buy__grid">
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="buy__card">
+              <img src={amazonLogo} alt="Amazon" className="buy__card-logo buy__card-logo--amazon" />
+              <div className="buy__card-name">Amazon</div>
+              <div className="buy__card-sub">Ships nationwide · Free returns</div>
+            </a>
+          </div>
+          <p className="buy__soon">More retailers coming soon.</p>
+        </div>
+      </section>
+
       {/* ── Testimonials (hidden until real reviews available) ── */}
       <section style={{ display: 'none' }} aria-hidden="true">
         <div className="testimonials__inner">
@@ -668,6 +701,7 @@ function App() {
                 <a href="#flavor">White Honey Apple</a>
                 <a href="#ingredients">Ingredients</a>
                 <a href="#why">Why ZeeVeez</a>
+                <a href="#buy">Where to Buy</a>
               </div>
               <div className="foot__col">
                 <h4>Company</h4>
