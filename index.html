@@ -108,12 +108,12 @@
     @media (max-width: 768px) {
       .orbit-arm { display: block; }
       .bg-gummy  { display: none; }
-      .card { gap: 14px; margin: 40px 20px; }
+      .card { gap: 10px; margin: 30px 20px; }
       .heading { font-size:40px; }
       .subcopy { font-size:15px; }
-      .bag-wrap { width:260px; height:260px; }
-      .orbit-gummy { width:44px; height:44px; left:116px; top:-22px; }
-      .bag { max-width:64vw; }
+      .bag-wrap { width:200px; height:200px; overflow:hidden; }
+      .orbit-gummy { width:28px; height:28px; left:68px; top:-14px; }
+      .bag { width:165px; max-width:unset; }
     }
 
     /* ── Desktop cursor gummies (injected by JS, pointer:fine only) ── */
@@ -205,17 +205,19 @@
     .bg-gummy--10 { width:68px;  top:28%;  left:1%;   --dur:7.4s; --delay:-0.8s; --r0:-22deg; --r1:-10deg;--r2:-16deg;}
 
     @media (max-width:480px) {
-      .heading  { font-size:30px; letter-spacing:-0.5px; }
-      .logo-img { height:52px; }
-      .bag-wrap { width:210px; height:210px; }
-      .orbit-gummy { width:32px; height:32px; left:88px; top:-16px; }
-      .bag { max-width:56vw; }
+      .heading  { font-size:28px; letter-spacing:-0.5px; }
+      .logo-img { height:46px; }
+      .bag-wrap { width:150px; height:150px; overflow:hidden; }
+      .orbit-gummy { width:20px; height:20px; left:52px; top:-10px; }
+      .bag { width:125px; max-width:unset; }
       .badges { gap:8px; }
       .badge  { font-size:12px; padding:5px 12px; }
     }
 
     @media (max-width:360px) {
-      .orbit-gummy { left:76px; }
+      .bag-wrap { width:130px; height:130px; }
+      .orbit-gummy { width:18px; height:18px; left:44px; top:-9px; }
+      .bag { width:108px; }
     }
   </style>
 </head>
