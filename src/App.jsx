@@ -44,22 +44,6 @@ function Counter({ end, suffix = '', duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
-/* ── FAQ Accordion item ── */
-function FaqItem({ q, a, open, onClick }) {
-  const bodyRef = useRef(null)
-  return (
-    <div className={`faq__item ${open ? 'faq__item--open' : ''}`}>
-      <button className="faq__q" onClick={onClick} aria-expanded={open}>
-        <span>{q}</span>
-        <svg className="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div className="faq__a-wrap" style={{ maxHeight: open ? bodyRef.current?.scrollHeight + 'px' : '0px' }}>
-        <div className="faq__a" ref={bodyRef}>{a}</div>
-      </div>
-    </div>
-  )
-}
-
 const ArrowIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
 )
@@ -72,8 +56,6 @@ const StarIcon = ({ size = 16, className = '' }) => (
 const HeartIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
 )
-
-/* ── Cloud SVG decoration ── */
 const Cloud = ({ className }) => (
   <svg className={`cloud ${className}`} viewBox="0 0 120 60" fill="currentColor" aria-hidden="true">
     <ellipse cx="60" cy="42" rx="50" ry="18" />
@@ -87,7 +69,6 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [showTop, setShowTop] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
   const [ctaEmail, setCtaEmail] = useState('')
   const [ctaLoading, setCtaLoading] = useState(false)
   const [ctaMessage, setCtaMessage] = useState('')
@@ -96,11 +77,11 @@ function App() {
   const [carouselDirection, setCarouselDirection] = useState('next')
 
   const nonprofits = [
-    { logo: emancipetLogo, name: 'Emancipet', desc: 'Providing affordable spay and neuter services to ensure a healthier, happier pet population in Central Texas.', url: 'https://www.emancipet.org/' },
-    { logo: marbridgeLogo, name: 'Marbridge', desc: 'Supporting individuals with intellectual and developmental disabilities through residential and day programs in Texas.', url: 'https://www.marbridge.org/' },
-    { logo: mealswheelsLogo, name: 'Meals on Wheels', desc: 'Delivering nutritious meals and friendly companionship to seniors in need throughout North Texas.', url: 'https://www.mealsonwheelsamerica.org/' },
-    { logo: petsaliveLogo, name: 'Pets Alive', desc: 'Rescuing and rehabilitating animals in crisis, providing sanctuary and second chances for deserving creatures.', url: 'https://www.austinpetsalive.org/' },
-    { logo: spcaLogo, name: 'SPCA', desc: 'Preventing animal cruelty and promoting the humane treatment of animals throughout the nation.', url: 'https://www.spca.org/' },
+    { logo: emancipetLogo, name: 'Emancipet', desc: 'Affordable spay and neuter services building a healthier, happier pet community across Central Texas.', url: 'https://www.emancipet.org/' },
+    { logo: marbridgeLogo, name: 'Marbridge', desc: 'Life-changing residential and day programs empowering adults with intellectual and developmental disabilities in Texas.', url: 'https://www.marbridge.org/' },
+    { logo: mealswheelsLogo, name: 'Meals on Wheels', desc: 'Hot meals and warm companionship delivered to seniors in need — because no one should go hungry or feel alone.', url: 'https://www.mealsonwheelsamerica.org/' },
+    { logo: petsaliveLogo, name: 'Pets Alive', desc: 'A no-kill rescue giving animals in crisis a second chance — sanctuary, care, and a path to a forever home.', url: 'https://www.austinpetsalive.org/' },
+    { logo: spcaLogo, name: 'SPCA', desc: 'Fighting animal cruelty and championing the humane treatment of animals across the nation.', url: 'https://www.spca.org/' },
   ]
 
   const handleCarouselPrev = useCallback(() => {
@@ -146,24 +127,17 @@ function App() {
   const handleEmailSubmit = async (e) => {
     e.preventDefault()
     if (!ctaEmail) return
-
     setCtaLoading(true)
     setCtaError('')
     setCtaMessage('')
-
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: ctaEmail })
       })
-
       const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send email')
-      }
-
+      if (!response.ok) throw new Error(data.error || 'Failed to send email')
       setCtaMessage('Check your email! We sent you a special welcome message.')
       setCtaEmail('')
       setTimeout(() => setCtaMessage(''), 5000)
@@ -176,34 +150,21 @@ function App() {
     }
   }
 
-  const [heroRef, heroVis] = useReveal(0.1)
-  const [aboutRef, aboutVis] = useReveal()
-  const [givesRef, givesVis] = useReveal()
+  const [heroRef, heroVis]         = useReveal(0.1)
+  const [flavorRef, flavorVis]     = useReveal()
+  const [ingredRef, ingredVis]     = useReveal()
   const [nonprofitRef, nonprofitVis] = useReveal()
-  const [flavorRef, flavorVis] = useReveal()
-  const [processRef, processVis] = useReveal()
-  const [statsRef, statsVis] = useReveal(0.3)
-  const [featRef, featVis] = useReveal()
-  const [ingredRef, ingredVis] = useReveal()
-  const [notRef, notVis] = useReveal()
-  const [testRef, testVis] = useReveal()
-  const [trustRef, trustVis] = useReveal(0.2)
-  const [faqRef, faqVis] = useReveal()
-  const [ctaRef, ctaVis] = useReveal()
-
-  const faqs = [
-    { q: 'What makes ZeeVeez different from other gummy snacks?', a: 'Every ZeeVeez pouch is made with organic tapioca syrup, organic cane sugar, water, pectin, and natural flavors — that\'s it. No gelatin, no artificial flavors, no synthetic dyes. We spent two years perfecting a gummy snack that actually tastes like the real thing.' },
-    { q: 'Are ZeeVeez vegan and gluten-free?', a: 'Yes! ZeeVeez are 100% plant-based (we use pectin instead of gelatin), gluten-free, and made in a peanut-free facility. They\'re a snack the whole family can enjoy.' },
-    { q: 'Where are ZeeVeez made?', a: 'ZeeVeez was born in Houston, Texas and every pouch is manufactured by Bridge Industrial Group in Fort Worth, TX. We\'re a Texas company through and through.' },
-    { q: 'When will ZeeVeez be available to purchase?', a: 'We\'re launching very soon! Sign up for our email list to be the first to know when White Honey Apple drops. Early subscribers get access to exclusive launch-day pricing.' },
-    { q: 'How many calories are in a pouch?', a: 'Each 1oz pouch of ZeeVeez is just 80 calories with 0g fat, 0g protein, 20g carbs, and 14g total sugars. A guilt-free snack that\'s actually delicious.' },
-    { q: 'Will there be other flavors?', a: 'White Honey Apple is our signature flagship — and we have more flavors in development. Join our list to be the first to taste-test new releases.' },
-    { q: 'Does ZeeVeez give back to charity?', a: 'Absolutely. A portion of every sale goes to selected charities benefiting animals and children. When you snack on ZeeVeez, you\'re helping make a difference.' },
-  ]
+  const [aboutRef, aboutVis]       = useReveal()
+  const [statsRef, statsVis]       = useReveal(0.3)
+  const [featRef, featVis]         = useReveal()
+  const [trustRef, trustVis]       = useReveal(0.2)
+  const [buyRef, buyVis]           = useReveal()
+  const [contactRef, contactVis]   = useReveal()
+  const [ctaRef, ctaVis]           = useReveal()
 
   return (
     <div className="site">
-      <a href="#about" className="skip-link">Skip to content</a>
+      <a href="#flavor" className="skip-link">Skip to content</a>
 
       {/* ── Nav ── */}
       <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
@@ -216,11 +177,11 @@ function App() {
           </button>
           {menuOpen && <div className="nav__overlay" onClick={closeMenu} />}
           <div className={`nav__links ${menuOpen ? 'nav__links--open' : ''}`}>
-            <a href="#about" onClick={closeMenu}>Our Story</a>
             <a href="#flavor" onClick={closeMenu}>White Honey Apple</a>
-            <a href="#ingredients" onClick={closeMenu}>Ingredients</a>
-            <a href="#faq" onClick={closeMenu}>FAQ</a>
-            <a href="#cta" className="nav__cta" onClick={closeMenu}>Get Notified</a>
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Shop</a>
+            <a href="#nonprofits" onClick={closeMenu}>Charities</a>
+            <a href="#about" onClick={closeMenu}>Our Story</a>
+            <a href="#contact" onClick={closeMenu}>Contact Us</a>
             <div className="nav__socials-mobile">
               <a href="https://www.instagram.com/thefeelgoodgummy?igsh=dXRwdXNuc3NxdzJ5" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="nav__social-link-mobile">
                 <img src={instagramLogo} alt="Instagram" className="nav__social-img-mobile" />
@@ -252,12 +213,16 @@ function App() {
         <div className="hero__floaters" aria-hidden="true">
           <Cloud className="cloud--hero-1" />
           <Cloud className="cloud--hero-2" />
-          <div className="floater floater--1" />
-          <div className="floater floater--2" />
-          <div className="floater floater--3" />
-          <div className="floater floater--4" />
-          <div className="floater floater--5" />
-          <div className="floater floater--6" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--6" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--7" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--8" />
+          <img src="/assets/gummy2.png" alt="" className="hero__gummy hero__gummy--9" />
+          <img src="/assets/gummy.png" alt="" className="hero__gummy hero__gummy--10" />
         </div>
         <div className="hero__content">
           <div className="hero__text">
@@ -276,44 +241,25 @@ function App() {
                 <span>Get Early Access</span>
                 <ArrowIcon />
               </a>
-              <a href="#about" className="btn btn--ghost">Our Story</a>
             </div>
             <div className="hero__trust">
-              <div className="hero__trust-badge"><CheckIcon /><span>All Natural</span></div>
               <div className="hero__trust-badge"><CheckIcon /><span>Plant-Based</span></div>
               <div className="hero__trust-badge"><CheckIcon /><span>Made in Texas</span></div>
               <div className="hero__trust-badge hero__trust-badge--heart"><HeartIcon /><span>Gives Back</span></div>
             </div>
           </div>
           <div className="hero__visual">
-            <div className="hero__gummy-scene">
+            <div className="hero__product-wrap">
               <div className="hero__glow" aria-hidden="true" />
-              <div className="apple-lg apple-lg--green">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-              </div>
-              <div className="apple-lg apple-lg--green apple-lg--center">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth apple-lg__mouth--big" />
-                </div>
-                <div className="apple-lg__leaf"></div>
-              </div>
-              <div className="apple-lg apple-lg--green">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-              </div>
+              <img
+                id="gummy-pouch-img"
+                src="/assets/bag.png"
+                alt="ZeeVeez White Honey Apple Gummy Snacks — 1oz pouch"
+                className="hero__bag-img"
+              />
             </div>
           </div>
         </div>
-
         <div className="wave wave--hero" aria-hidden="true">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
             <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="#ffffff" />
@@ -339,82 +285,140 @@ function App() {
         </div>
       </div>
 
-      {/* ── About ── */}
-      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
-        <div className="about__inner">
-          <div className="about__media">
-            <div className="about__img-wrap">
-              <div className="about__pattern" aria-hidden="true" />
-              <div className="about__illustration">
-                <div className="about__tree" aria-hidden="true">
-                  <div className="tree__trunk" />
-                  <div className="tree__canopy" />
-                  <div className="tree__apple tree__apple--1" />
-                  <div className="tree__apple tree__apple--2" />
-                  <div className="tree__apple tree__apple--3" />
+      {/* ── Flagship Flavor ── */}
+      <section ref={flavorRef} className={`flavor ${flavorVis ? 'reveal' : ''}`} id="flavor">
+        <div className="flavor__bg" aria-hidden="true">
+          <Cloud className="cloud--flavor-1" />
+          <Cloud className="cloud--flavor-2" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--6" />
+          <img src="/assets/gummy2.png" alt="" className="flavor__gummy flavor__gummy--7" />
+          <img src="/assets/gummy.png" alt="" className="flavor__gummy flavor__gummy--8" />
+        </div>
+        <div className="flavor__inner">
+          <div className="flavor__text">
+            <span className="section-tag section-tag--light">Signature Flavor</span>
+            <h2>White Honey Apple</h2>
+            <p className="flavor__lead">
+              Our signature gummy snack is so delish we bet you can't have
+              just one. Where light, floral honey meets crisp orchard apple
+              for a flavor that's two years in the making.
+            </p>
+            <div className="flavor__details">
+              <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#127822;</div>
+                <div>
+                  <strong>Natural Apple Flavor</strong>
+                  <p>Bright, crisp apple taste from real natural flavors — not synthetic concentrates.</p>
                 </div>
-                <div className="about__bee" aria-hidden="true">
-                  <div className="bee__body" />
-                  <div className="bee__wing" />
+              </div>
+              <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#127855;</div>
+                <div>
+                  <strong>White Honey Sweetness</strong>
+                  <p>A delicate, floral honey note that balances perfectly with the apple brightness.</p>
+                </div>
+              </div>
+              <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#10024;</div>
+                <div>
+                  <strong>Only 80 Calories</strong>
+                  <p>A full 1oz pouch for just 80 calories. 0g fat, made in a peanut-free facility.</p>
+                </div>
+              </div>
+              <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#11088;</div>
+                <div>
+                  <strong>Crafted in Texas</strong>
+                  <p>Born in Houston, perfected in Fort Worth. Two years in the making — worth every bite.</p>
                 </div>
               </div>
             </div>
+            <div className="flavor__nutrition">
+              <div className="flavor__nut-item"><strong>80</strong><span>Calories</span></div>
+              <div className="flavor__nut-item"><strong>0g</strong><span>Fat</span></div>
+              <div className="flavor__nut-item"><strong>20g</strong><span>Carbs</span></div>
+              <div className="flavor__nut-item"><strong>14g</strong><span>Sugars</span></div>
+              <div className="flavor__nut-item"><strong>1oz</strong><span>Pouch</span></div>
+            </div>
           </div>
-          <div className="about__text">
-            <span className="section-tag">Our Story</span>
-            <h2>Born in Houston, Texas: <em>one flavor says it all.</em></h2>
-            <p>
-              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
-              could be better. Better ingredients, better taste, better impact.
-              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
-              ingredients, real pectin, and natural flavors &mdash; no gelatin,
-              no synthetic dyes, no compromises.
-            </p>
-            <p>
-              We taste every batch. If it doesn't make us say "just one more,"
-              it doesn't leave the facility.
-            </p>
-            <div className="about__highlights">
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127807;</div>
-                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon">&#127855;</div>
-                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
-              </div>
-              <div className="about__hl">
-                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
-                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
-              </div>
+          <div className="flavor__visual">
+            <div className="flavor__gummy-wrap">
+              <div className="flavor__ring flavor__ring--1" aria-hidden="true" />
+              <div className="flavor__ring flavor__ring--2" aria-hidden="true" />
+              <div className="flavor__ring flavor__ring--3" aria-hidden="true" />
+              <img
+                src="/assets/bag.png"
+                alt="ZeeVeez White Honey Apple Gummy Snacks"
+                className="flavor__bag-img"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Gives Back ── */}
-      <section ref={givesRef} className={`gives ${givesVis ? 'reveal' : ''}`}>
-        <div className="gives__inner">
-          <div className="gives__icon"><HeartIcon /></div>
-          <div className="gives__text">
-            <h2>A gummy snack that gives back</h2>
-            <p>
-              Savor the taste knowing a portion of our profits go to selected
-              charities benefiting animals and children. Every pouch you enjoy
-              helps make a real difference. Learn more at zeeveez.com.
-            </p>
+      {/* ── Ingredients (inside White Honey Apple section) ── */}
+      <section ref={ingredRef} className={`ingr ${ingredVis ? 'reveal' : ''}`} id="ingredients">
+        <div className="ingr__inner">
+          <div className="ingr__header">
+            <span className="section-tag">What's Inside</span>
+            <h2>Simple ingredients. Incredible flavor.</h2>
+            <p>Everything in a ZeeVeez pouch — nothing to hide.</p>
+          </div>
+          <div className="ingr__grid">
+            {[
+              { emoji: '&#127846;', name: 'Organic Tapioca Syrup', note: 'Clean, natural sweetener base' },
+              { emoji: '&#127854;', name: 'Organic Cane Sugar', note: 'Just enough sweetness' },
+              { emoji: '&#127855;', name: 'White Honey', note: 'Delicate floral sweetness' },
+              { emoji: '&#128167;', name: 'Water', note: 'Pure and simple' },
+              { emoji: '&#129389;', name: 'Pectin', note: 'Plant-based, perfect chew' },
+              { emoji: '&#127811;', name: 'Natural Flavors', note: 'Less than 2% — real taste' },
+              { emoji: '&#127819;', name: 'Citric Acid', note: 'Natural tartness' },
+              { emoji: '&#129387;', name: 'Sodium Citrate', note: 'Natural acidity balance' },
+            ].map(({ emoji, name, note }) => (
+              <div className="ingr-card" key={name}>
+                <div className="ingr-card__emoji" dangerouslySetInnerHTML={{ __html: emoji }} />
+                <div className="ingr-card__name">{name}</div>
+                <div className="ingr-card__note">{note}</div>
+              </div>
+            ))}
+          </div>
+          <p className="ingr__footnote">Made in a peanut-free facility. That's the full list — no fine print.</p>
+          <div className="ingr__not">
+            <h3>What you'll <em>never</em> find in a ZeeVeez</h3>
+            <div className="not__grid">
+              {['Artificial Flavors','Synthetic Dyes','High-Fructose Corn Syrup','Gelatin','Peanuts','GMOs'].map(item => (
+                <div className="not__item" key={item}>
+                  <svg className="not__x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Non-Profits/Partners ── */}
-      <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`}>
+      {/* ── Charity Partners ── */}
+      <section ref={nonprofitRef} className={`nonprofits ${nonprofitVis ? 'reveal' : ''}`} id="nonprofits">
         <div className="nonprofits__bg" aria-hidden="true"></div>
         <div className="nonprofits__inner">
           <div className="nonprofits__header">
-            <span className="section-tag">Making a Difference</span>
+            <span className="section-tag">Giving Back</span>
             <h2>Our charity partners</h2>
-            <p>A portion of ZeeVeez profits go to these organizations dedicated to helping animals and children in Texas.</p>
+            <p>
+              Savor the taste knowing a portion of our profits go to selected charities
+              benefiting animals and children. Every pouch you enjoy helps make a real difference.
+            </p>
+            <p className="nonprofits__cta-line">
+              Giving back is part of what we do. Every quarter, we support local children's and
+              animal charities with a portion of our profits.<br /><br />
+              Interested in getting your charity involved? Contact us at{' '}
+              <a href="mailto:howdy@zeeveez.com">howdy@zeeveez.com</a>
+            </p>
           </div>
           <div className="nonprofits__carousel">
             <button className="nonprofits__btn nonprofits__btn--prev" onClick={handleCarouselPrev} aria-label="Previous nonprofit">
@@ -462,92 +466,49 @@ function App() {
         </div>
       </section>
 
-      {/* ── Flagship Flavor ── */}
-      <section ref={flavorRef} className={`flavor ${flavorVis ? 'reveal' : ''}`} id="flavor">
-        <div className="flavor__bg" aria-hidden="true">
-          <Cloud className="cloud--flavor-1" />
-          <Cloud className="cloud--flavor-2" />
+      {/* ── About ── */}
+      <section ref={aboutRef} className={`about ${aboutVis ? 'reveal' : ''}`} id="about">
+        <div className="about__floaters" aria-hidden="true">
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="about__gummy about__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="about__gummy about__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="about__gummy about__gummy--5" />
         </div>
-        <div className="flavor__inner">
-          <div className="flavor__text">
-            <span className="section-tag section-tag--light">Signature Flavor</span>
-            <h2>White Honey Apple</h2>
-            <p className="flavor__lead">
-              Our signature gummy snack is so delish we bet you can't have
-              just one. Where light, floral honey meets crisp orchard apple
-              for a flavor that's two years in the making.
+        <div className="about__inner">
+          <div className="about__media">
+            <div className="about__img-wrap">
+              <img
+                src="/assets/lifestyle.png"
+                alt="ZeeVeez White Honey Apple gummies"
+                className="about__lifestyle-img"
+              />
+            </div>
+          </div>
+          <div className="about__text">
+            <span className="section-tag">The Origin Story</span>
+            <h2>Made with Love in Texas</h2>
+            <p>
+              ZeeVeez was born in Houston, Texas with a belief that gummy snacks
+              could be better. Better ingredients, better taste, better impact.
+              Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
+              ingredients, real pectin, and natural flavors &mdash; no gelatin,
+              no synthetic dyes, no compromises.
             </p>
-            <div className="flavor__details">
-              <div className="flavor__detail">
-                <div className="flavor__detail-icon">&#127822;</div>
-                <div>
-                  <strong>Natural Apple Flavor</strong>
-                  <p>Bright, crisp apple taste from real natural flavors — not synthetic concentrates.</p>
-                </div>
+            <div className="about__highlights">
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127807;</div>
+                <div><strong>Plant-Based</strong><span>Pectin, not gelatin</span></div>
               </div>
-              <div className="flavor__detail">
-                <div className="flavor__detail-icon">&#127855;</div>
-                <div>
-                  <strong>White Honey Sweetness</strong>
-                  <p>A delicate, floral honey note that balances perfectly with the apple brightness.</p>
-                </div>
+              <div className="about__hl">
+                <div className="about__hl-icon">&#127855;</div>
+                <div><strong>All Natural</strong><span>Organic ingredients</span></div>
               </div>
-              <div className="flavor__detail">
-                <div className="flavor__detail-icon">&#10024;</div>
-                <div>
-                  <strong>Only 80 Calories</strong>
-                  <p>A full 1oz pouch for just 80 calories. 0g fat, made in a peanut-free facility.</p>
-                </div>
+              <div className="about__hl">
+                <div className="about__hl-icon"><StarIcon size={24} className="texas-star-icon" /></div>
+                <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
               </div>
             </div>
-            <div className="flavor__nutrition">
-              <div className="flavor__nut-item"><strong>80</strong><span>Calories</span></div>
-              <div className="flavor__nut-item"><strong>0g</strong><span>Fat</span></div>
-              <div className="flavor__nut-item"><strong>20g</strong><span>Carbs</span></div>
-              <div className="flavor__nut-item"><strong>14g</strong><span>Sugars</span></div>
-              <div className="flavor__nut-item"><strong>1oz</strong><span>Pouch</span></div>
-            </div>
-          </div>
-          <div className="flavor__visual">
-            <div className="flavor__gummy-wrap">
-              <div className="flavor__ring flavor__ring--1" aria-hidden="true" />
-              <div className="flavor__ring flavor__ring--2" aria-hidden="true" />
-              <div className="flavor__ring flavor__ring--3" aria-hidden="true" />
-              <div className="apple-lg apple-lg--green apple-lg--flavor">
-                <div className="apple-lg__shine" />
-                <div className="apple-lg__face">
-                  <div className="apple-lg__eye" /><div className="apple-lg__eye" />
-                  <div className="apple-lg__mouth" />
-                </div>
-                <div className="apple-lg__leaf"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── How We Make It ── */}
-      <section ref={processRef} className={`process ${processVis ? 'reveal' : ''}`}>
-        <div className="process__inner">
-          <div className="process__header">
-            <span className="section-tag">Our Process</span>
-            <h2>Born in Houston, manufactured in Fort Worth</h2>
-            <p>Every pouch goes through a careful process — no shortcuts.</p>
-          </div>
-          <div className="process__timeline">
-            {[
-              { step: '01', title: 'Source', desc: 'We start with organic tapioca syrup and organic cane sugar. Every ingredient is carefully selected and traceable.', icon: '&#127806;' },
-              { step: '02', title: 'Blend', desc: 'Natural flavors are blended with water and our organic base. No concentrates, no high-fructose corn syrup, no shortcuts.', icon: '&#129514;' },
-              { step: '03', title: 'Craft', desc: 'Plant-based pectin gives the perfect chew. Each batch is cooked slowly in our peanut-free Fort Worth facility.', icon: '&#128293;' },
-              { step: '04', title: 'Taste', desc: 'Our team tastes every batch. If it doesn\'t meet the ZeeVeez standard, it doesn\'t ship. Period.', icon: '&#11088;' },
-            ].map(({ step, title, desc, icon }) => (
-              <div className="process__step" key={step}>
-                <div className="process__step-num">{step}</div>
-                <div className="process__step-icon" dangerouslySetInnerHTML={{ __html: icon }} />
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -577,7 +538,7 @@ function App() {
         </div>
       </section>
 
-      {/* ── Features ── */}
+      {/* ── Why ZeeVeez ── */}
       <section ref={featRef} className={`features ${featVis ? 'reveal' : ''}`} id="why">
         <div className="features__inner">
           <div className="features__header">
@@ -591,7 +552,7 @@ function App() {
               { icon: '&#127858;', title: 'So Delish', desc: 'Two years of recipe testing to nail a flavor so good we bet you can\'t have just one. One flavor truly says it all.' },
               { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
               { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
-              { icon: '&#128155;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
+              { icon: '&#10084;&#65039;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
               { icon: '&#11088;', title: 'Made in Texas', desc: 'Born in Houston, manufactured in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
             ].map(({ icon, title, desc }) => (
               <div className="feature-card" key={title}>
@@ -604,79 +565,12 @@ function App() {
         </div>
       </section>
 
-      {/* ── Ingredients ── */}
-      <section ref={ingredRef} className={`ingr ${ingredVis ? 'reveal' : ''}`} id="ingredients">
-        <div className="ingr__inner">
-          <div className="ingr__header">
-            <span className="section-tag">What's Inside</span>
-            <h2>Simple ingredients. Incredible flavor.</h2>
-            <p>Everything in a ZeeVeez pouch — nothing to hide.</p>
-          </div>
-          <div className="ingr__grid">
-            {[
-              { emoji: '&#127846;', name: 'Organic Tapioca Syrup', note: 'Clean, natural sweetener base' },
-              { emoji: '&#127854;', name: 'Organic Cane Sugar', note: 'Just enough sweetness' },
-              { emoji: '&#128167;', name: 'Water', note: 'Pure and simple' },
-              { emoji: '&#129389;', name: 'Pectin', note: 'Plant-based, perfect chew' },
-              { emoji: '&#127811;', name: 'Natural Flavors', note: 'Less than 2% — real taste' },
-              { emoji: '&#127819;', name: 'Citric Acid', note: 'Natural tartness' },
-              { emoji: '&#129387;', name: 'Sodium Citrate', note: 'Natural acidity balance' },
-            ].map(({ emoji, name, note }) => (
-              <div className="ingr-card" key={name}>
-                <div className="ingr-card__emoji" dangerouslySetInnerHTML={{ __html: emoji }} />
-                <div className="ingr-card__name">{name}</div>
-                <div className="ingr-card__note">{note}</div>
-              </div>
-            ))}
-          </div>
-          <p className="ingr__footnote">Made in a peanut-free facility. That's the full list — no fine print.</p>
-        </div>
-      </section>
-
-      {/* ── What's NOT inside ── */}
-      <section ref={notRef} className={`not ${notVis ? 'reveal' : ''}`}>
-        <div className="not__inner">
-          <h2>What you'll <em>never</em> find in a ZeeVeez</h2>
-          <div className="not__grid">
-            {['Artificial Flavors','Synthetic Dyes','High-Fructose Corn Syrup','Gelatin','Peanuts','GMOs'].map(item => (
-              <div className="not__item" key={item}>
-                <svg className="not__x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ── */}
-      <section ref={testRef} className={`testimonials ${testVis ? 'reveal' : ''}`}>
+      {/* ── Testimonials (hidden until real reviews available) ── */}
+      <section style={{ display: 'none' }} aria-hidden="true">
         <div className="testimonials__inner">
           <div className="testimonials__header">
             <span className="section-tag">Early Tasters</span>
             <h2>What people are saying</h2>
-          </div>
-          <div className="testimonials__grid">
-            {[
-              { name: 'Sarah M.', loc: 'Houston, TX', text: 'I\'ve tried every "healthy" gummy on the market. ZeeVeez actually tastes GOOD — I don\'t feel like I\'m eating cardboard for my health. My whole family obsessed.', stars: 5 },
-              { name: 'James R.', loc: 'Dallas, TX', text: 'The ingredient list is so clean it\'s almost suspicious. No weird stuff, no mystery additives. These are what gummies should have been all along.', stars: 5 },
-              { name: 'Maria L.', loc: 'Austin, TX', text: 'Started buying them because of the charity tie-in. Now I buy them because they\'re genuinely the best-tasting snack I\'ve had. Win-win.', stars: 5 },
-              { name: 'Devon T.', loc: 'Fort Worth, TX', text: 'As a parent, finding snacks my kids actually want TO eat that I feel good ABOUT giving them? This changed the game. Plus they\'re made right here in Texas!', stars: 5 },
-              { name: 'Alex K.', loc: 'San Antonio, TX', text: 'Plant-based, no gelatin, actual organic ingredients — and they still taste like an actual treat. That\'s rare. Seriously rare. Very impressed.', stars: 5 },
-            ].map(({ name, loc, text, stars }) => (
-              <div className="test-card" key={name}>
-                <div className="test-card__stars">
-                  {Array.from({ length: stars }).map((_, i) => <StarIcon key={i} size={16} className="test-card__star" />)}
-                </div>
-                <p className="test-card__text">&ldquo;{text}&rdquo;</p>
-                <div className="test-card__author">
-                  <div className="test-card__avatar">{name.charAt(0)}</div>
-                  <div>
-                    <div className="test-card__name">{name}</div>
-                    <div className="test-card__loc">{loc}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -705,17 +599,29 @@ function App() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section ref={faqRef} className={`faq ${faqVis ? 'reveal' : ''}`} id="faq">
-        <div className="faq__inner">
-          <div className="faq__header">
-            <span className="section-tag">FAQ</span>
-            <h2>Got questions? We've got answers.</h2>
+      {/* ── Contact Us ── */}
+      <section ref={contactRef} className={`contact ${contactVis ? 'reveal' : ''}`} id="contact">
+        <div className="contact__inner">
+          <div className="contact__header">
+            <span className="section-tag">Contact</span>
+            <h2>Get in touch.</h2>
           </div>
-          <div className="faq__list">
-            {faqs.map((f, i) => (
-              <FaqItem key={i} q={f.q} a={f.a} open={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)} />
-            ))}
+          <div className="contact__grid">
+            <a href="mailto:howdy@zeeveez.com" className="contact__card">
+              <div className="contact__card-icon">✉️</div>
+              <div className="contact__card-label">General Inquiries</div>
+              <div className="contact__card-value">howdy@zeeveez.com</div>
+            </a>
+            <a href="mailto:howdy@zeeveez.com?subject=Wholesale%20Request" className="contact__card">
+              <div className="contact__card-icon">🤝</div>
+              <div className="contact__card-label">Wholesale Requests</div>
+              <div className="contact__card-value">howdy@zeeveez.com</div>
+            </a>
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="contact__card">
+              <div className="contact__card-icon">📦</div>
+              <div className="contact__card-label">Shop on Amazon</div>
+              <div className="contact__card-value">amazon.com</div>
+            </a>
           </div>
         </div>
       </section>
@@ -725,29 +631,32 @@ function App() {
         <div className="cta__particles" aria-hidden="true">
           <Cloud className="cloud--cta-1" />
           <Cloud className="cloud--cta-2" />
-          <div className="cta__p cta__p--1" />
-          <div className="cta__p cta__p--2" />
-          <div className="cta__p cta__p--3" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--1" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--2" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--3" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--4" />
+          <img src="/assets/gummy.png" alt="" className="cta__gummy cta__gummy--5" />
+          <img src="/assets/gummy2.png" alt="" className="cta__gummy cta__gummy--6" />
         </div>
         <div className="cta__inner">
           <h2>Ready to taste the difference?</h2>
           <p>
-            ZeeVeez White Honey Apple gummy snacks are launching soon. Sign up
-            and be the first to get a pouch.
+            ZeeVeez White Honey Apple gummy snacks are launching soon.<br />
+            Sign up and be the first to get a pouch.
           </p>
           <div className="cta__form">
             <form onSubmit={handleEmailSubmit} className="cta__form-input">
-              <input 
-                type="email" 
-                className="cta__input" 
-                placeholder="your@email.com" 
+              <input
+                type="email"
+                className="cta__input"
+                placeholder="your@email.com"
                 aria-label="Email address"
                 value={ctaEmail}
                 onChange={(e) => setCtaEmail(e.target.value)}
                 required
                 disabled={ctaLoading}
               />
-              <button 
+              <button
                 type="submit"
                 className="btn btn--primary btn--cta"
                 disabled={ctaLoading}
@@ -763,6 +672,25 @@ function App() {
         </div>
       </section>
 
+      {/* ── Where to Buy ── */}
+      <section ref={buyRef} className={`buy ${buyVis ? 'reveal' : ''}`} id="buy">
+        <div className="buy__inner">
+          <div className="buy__header">
+            <span className="section-tag">Where to Buy</span>
+            <h2>Snack first. Regret never.</h2>
+            <p>Pick up a pouch and taste what the hype is about.</p>
+          </div>
+          <div className="buy__grid">
+            <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" className="buy__card">
+              <img src={amazonLogo} alt="Amazon" className="buy__card-logo buy__card-logo--amazon" />
+              <div className="buy__card-name">Amazon</div>
+              <div className="buy__card-sub">Ships nationwide · Free returns</div>
+            </a>
+          </div>
+          <p className="buy__soon">More retailers coming soon.</p>
+        </div>
+      </section>
+
       {/* ── Footer ── */}
       <footer className="foot">
         <div className="foot__inner">
@@ -771,14 +699,10 @@ function App() {
               <a href="#" className="foot__logo">
                 <img src="/logo.png" alt="ZeeVeez™ Gummy Snacks" className="foot__logo-img" />
               </a>
-              <p>One flavor says it all.</p>
+              <p className="foot__tagline">One flavor says it all.</p>
               <div className="foot__texas">
                 <StarIcon size={14} className="foot__texas-star" />
-                <span>Born in Houston, TX &middot; Manufactured in Fort Worth, TX</span>
-              </div>
-              <div className="foot__company">
-                ZV3, LLC &middot; Bridge Industrial Group<br />
-                2615 Ludelle Street, Fort Worth, TX 76105
+                <span>Born in Houston, TX<br />Manufactured in Fort Worth, TX</span>
               </div>
             </div>
             <div className="foot__cols">
@@ -787,12 +711,13 @@ function App() {
                 <a href="#flavor">White Honey Apple</a>
                 <a href="#ingredients">Ingredients</a>
                 <a href="#why">Why ZeeVeez</a>
+                <a href="#buy">Where to Buy</a>
               </div>
               <div className="foot__col">
                 <h4>Company</h4>
                 <a href="#about">Our Story</a>
-                <a href="#">Giving Back</a>
-                <a href="#">Press</a>
+                <a href="#nonprofits">Giving Back</a>
+                <a href="#contact">Contact</a>
               </div>
               <div className="foot__col">
                 <h4>Connect</h4>
