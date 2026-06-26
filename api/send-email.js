@@ -68,9 +68,7 @@ export default async function handler(req, res) {
           <tr>
             <td style="background-color:#ffffff;padding:40px 40px 32px;">
 
-              <p style="margin:0 0 6px;font-size:22px;text-align:center;line-height:1;">✨</p>
-              <p style="margin:0 0 6px;font-size:20px;font-weight:700;color:#0f1f15;text-align:center;line-height:1.35;">Hey, you're on the ZeeVeez waitlist.<br>We're glad you're here.</p>
-              <p style="margin:0 0 28px;font-size:22px;text-align:center;line-height:1;">✨</p>
+              <p style="margin:0 0 28px;font-size:20px;font-weight:700;color:#0f1f15;text-align:center;line-height:1.5;">Hey, you're on the ZeeVeez waitlist. ✨<br>We're glad you're here.</p>
 
               <p style="margin:0 0 16px;font-size:15px;line-height:1.75;color:#374151;">Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything — just clean ingredients and a flavor that people keep coming back for.</p>
 
