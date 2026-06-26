@@ -58,9 +58,9 @@ export default async function handler(req, res) {
 
           <!-- Header -->
           <tr>
-            <td align="center" style="background-color:#22c55e;padding:36px 32px 28px;border-radius:12px 12px 0 0;">
-              <p style="margin:0;font-size:36px;font-weight:900;color:#ffffff;letter-spacing:-1px;line-height:1;">ZeeVeez™</p>
-              <p style="margin:8px 0 0;font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:1.5px;text-transform:uppercase;">White Honey Apple &nbsp;·&nbsp; Made in Texas</p>
+            <td align="center" style="background-color:#ffffff;padding:28px 32px 20px;border-radius:12px 12px 0 0;">
+              <img src="https://zeeveez.com/logo.png" alt="ZeeVeez Gummy Snacks" width="300" style="display:block;margin:0 auto;max-width:100%;height:auto;" />
+              <p style="margin:12px 0 0;font-size:13px;font-weight:600;color:#16a34a;letter-spacing:1.5px;text-transform:uppercase;">White Honey Apple &nbsp;·&nbsp; Made in Texas</p>
             </td>
           </tr>
 
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
           <tr>
             <td style="background-color:#ffffff;padding:40px 40px 32px;">
 
-              <p style="margin:0 0 28px;font-size:20px;font-weight:700;color:#0f1f15;text-align:center;line-height:1.5;">Hey, you're on the ZeeVeez waitlist. ✨<br>We're glad you're here.</p>
+              <p style="margin:0 0 28px;font-size:20px;font-weight:700;color:#0f1f15;text-align:center;line-height:1.5;">✨ Hey, you're on the ZeeVeez waitlist. ✨<br>We're glad you're here.</p>
 
               <p style="margin:0 0 16px;font-size:15px;line-height:1.75;color:#374151;">Two years ago we set out to make a gummy that didn't taste like a compromise. No gelatin, no artificial anything — just clean ingredients and a flavor that people keep coming back for.</p>
 
@@ -110,7 +110,7 @@ export default async function handler(req, res) {
           <!-- Footer -->
           <tr>
             <td align="center" style="background-color:#f0fdf4;border-top:1px solid #dcfce7;border-radius:0 0 12px 12px;padding:22px 32px;">
-              <p style="margin:0 0 4px;font-size:12px;font-weight:700;color:#374151;">ZeeVeez™ — Feel Good Gummies</p>
+              <p style="margin:0 0 4px;font-size:12px;font-weight:700;color:#374151;">© 2026 ZeeVeez™ — Feel Good Gummies</p>
               <p style="margin:0 0 14px;font-size:12px;color:#9ca3af;">ZV3, LLC &nbsp;·&nbsp; 2615 Ludelle Street, Fort Worth, TX 76105</p>
               <a href="https://zeeveez.com/api/unsubscribe?email=${encodeURIComponent(email)}" style="font-size:11px;color:#9ca3af;text-decoration:underline;">Unsubscribe</a>
             </td>
