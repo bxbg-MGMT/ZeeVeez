@@ -156,7 +156,6 @@ function App() {
   const [nonprofitRef, nonprofitVis] = useReveal()
   const [aboutRef, aboutVis]       = useReveal()
   const [statsRef, statsVis]       = useReveal(0.3)
-  const [featRef, featVis]         = useReveal()
   const [trustRef, trustVis]       = useReveal(0.2)
   const [buyRef, buyVis]           = useReveal()
   const [contactRef, contactVis]   = useReveal()
@@ -177,7 +176,6 @@ function App() {
           </button>
           {menuOpen && <div className="nav__overlay" onClick={closeMenu} />}
           <div className={`nav__links ${menuOpen ? 'nav__links--open' : ''}`}>
-            <a href="#flavor" onClick={closeMenu}>White Honey Apple</a>
             <a href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Shop</a>
             <a href="#nonprofits" onClick={closeMenu}>Charities</a>
             <a href="#about" onClick={closeMenu}>Our Story</a>
@@ -267,21 +265,20 @@ function App() {
         </div>
       </header>
 
-      {/* ── Ticker ── */}
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker__track">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div className="ticker__content" key={i}>
-              <span>One Flavor Says It All</span><span className="ticker__dot" />
-              <span>White Honey Apple</span><span className="ticker__dot" />
-              <span>All Natural</span><span className="ticker__dot" />
-              <span>Made in Texas</span><span className="ticker__dot ticker__dot--star"><StarIcon size={10} /></span>
-              <span>Gives Back to Charity</span><span className="ticker__dot" />
-              <span>80 Calories</span><span className="ticker__dot" />
-              <span>Peanut Free Facility</span><span className="ticker__dot" />
-              <span>Plant-Based</span><span className="ticker__dot" />
-            </div>
-          ))}
+      {/* ── Static banner ── */}
+      <div className="ticker ticker--static">
+        <div className="ticker__static-inner">
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">🌿</span><span>All Natural</span></div>
+          <span className="ticker__stat-sep" aria-hidden="true"><StarIcon size={8} /></span>
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">🌱</span><span>Plant-Based</span></div>
+          <span className="ticker__stat-sep" aria-hidden="true"><StarIcon size={8} /></span>
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">⭐</span><span>Made in Texas</span></div>
+          <span className="ticker__stat-sep" aria-hidden="true"><StarIcon size={8} /></span>
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">❤️</span><span>Gives Back</span></div>
+          <span className="ticker__stat-sep" aria-hidden="true"><StarIcon size={8} /></span>
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">✨</span><span>80 Calories</span></div>
+          <span className="ticker__stat-sep" aria-hidden="true"><StarIcon size={8} /></span>
+          <div className="ticker__stat-item"><span className="ticker__stat-icon">🥜</span><span>Peanut Free</span></div>
         </div>
       </div>
 
@@ -304,9 +301,8 @@ function App() {
             <span className="section-tag section-tag--light">Signature Flavor</span>
             <h2>White Honey Apple</h2>
             <p className="flavor__lead">
-              Our signature gummy snack is so delish we bet you can't have
-              just one. Where light, floral honey meets crisp orchard apple
-              for a flavor that's two years in the making.
+              Floral honey meets crisp orchard apple — with a bright sour surprise
+              that'll keep you coming back for more. One flavor. That's all it takes.
             </p>
             <div className="flavor__details">
               <div className="flavor__detail">
@@ -324,17 +320,17 @@ function App() {
                 </div>
               </div>
               <div className="flavor__detail">
+                <div className="flavor__detail-icon">&#127819;</div>
+                <div>
+                  <strong>The Sour Surprise</strong>
+                  <p>Citric acid gives every bite a bright, tangy finish you won't see coming — and won't forget.</p>
+                </div>
+              </div>
+              <div className="flavor__detail">
                 <div className="flavor__detail-icon">&#10024;</div>
                 <div>
                   <strong>Only 80 Calories</strong>
                   <p>A full 1oz pouch for just 80 calories. 0g fat, made in a peanut-free facility.</p>
-                </div>
-              </div>
-              <div className="flavor__detail">
-                <div className="flavor__detail-icon">&#11088;</div>
-                <div>
-                  <strong>Crafted in Texas</strong>
-                  <p>Born in Houston, perfected in Fort Worth. Two years in the making — worth every bite.</p>
                 </div>
               </div>
             </div>
@@ -490,11 +486,11 @@ function App() {
             <h2>Made with Love in Texas</h2>
             <p>
               ZeeVeez was born in Houston, Texas with a belief that gummy snacks
-              could be better. Better ingredients, better taste, better impact.
+              could be better &mdash; better ingredients, better taste, better impact.
               Made by ZV3, LLC and manufactured in Fort Worth, every pouch is crafted with organic
-              ingredients, real pectin, and natural flavors &mdash; no gelatin,
-              no synthetic dyes, no compromises.
+              ingredients, real pectin, and natural flavors &mdash; no synthetic dyes, no compromises.
             </p>
+            <p>That&rsquo;s why we created ZeeVeez.</p>
             <div className="about__highlights">
               <div className="about__hl">
                 <div className="about__hl-icon">&#127807;</div>
@@ -509,6 +505,28 @@ function App() {
                 <div><strong>Made in Texas</strong><span>Born in Houston, TX</span></div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="about__why">
+          <div className="about__why-header">
+            <span className="section-tag">Why ZeeVeez</span>
+            <h2>Not your average gummy snack</h2>
+          </div>
+          <div className="features__grid">
+            {[
+              { icon: '&#127807;', title: 'Organic Ingredients', desc: 'Organic tapioca syrup and organic cane sugar form our base. We put everything on the label because we have nothing to hide.' },
+              { icon: '&#127858;', title: 'So Delish', desc: 'A flavor so good we bet you can\'t have just one. One flavor truly says it all.' },
+              { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
+              { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
+              { icon: '&#10084;&#65039;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
+              { icon: '&#127819;', title: 'The Sour Surprise', desc: 'Citric acid delivers a bright, tangy finish that catches you off guard — in the best possible way.' },
+            ].map(({ icon, title, desc }) => (
+              <div className="feature-card" key={title}>
+                <div className="feature-card__icon" dangerouslySetInnerHTML={{ __html: icon }} />
+                <h3>{title}</h3>
+                <p>{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -534,33 +552,6 @@ function App() {
           <div className="stat">
             <div className="stat__number"><Counter end={0} suffix="g" /></div>
             <div className="stat__label">Fat Per Serving</div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why ZeeVeez ── */}
-      <section ref={featRef} className={`features ${featVis ? 'reveal' : ''}`} id="why">
-        <div className="features__inner">
-          <div className="features__header">
-            <span className="section-tag">Why ZeeVeez</span>
-            <h2>Not your average gummy snack</h2>
-            <p>Every detail matters when you're making snacks the right way.</p>
-          </div>
-          <div className="features__grid">
-            {[
-              { icon: '&#127807;', title: 'Organic Ingredients', desc: 'Organic tapioca syrup and organic cane sugar form our base. We put everything on the label because we have nothing to hide.' },
-              { icon: '&#127858;', title: 'So Delish', desc: 'Two years of recipe testing to nail a flavor so good we bet you can\'t have just one. One flavor truly says it all.' },
-              { icon: '&#127793;', title: 'Plant-Based Pectin', desc: 'No gelatin here. Our gummies get their perfect chew from real pectin, making them friendly for more diets.' },
-              { icon: '&#129656;', title: 'No Synthetic Dyes', desc: 'Our colors come from nature — not a lab. What you see is what you get: clean, honest ingredients.' },
-              { icon: '&#10084;&#65039;', title: 'Gives Back', desc: 'A portion of every sale goes to charities benefiting animals and children. Snacking with purpose.' },
-              { icon: '&#11088;', title: 'Made in Texas', desc: 'Born in Houston, manufactured in our peanut-free Fort Worth, TX facility by ZV3, LLC. Texas quality, Texas pride.' },
-            ].map(({ icon, title, desc }) => (
-              <div className="feature-card" key={title}>
-                <div className="feature-card__icon" dangerouslySetInnerHTML={{ __html: icon }} />
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -640,10 +631,7 @@ function App() {
         </div>
         <div className="cta__inner">
           <h2>Ready to taste the difference?</h2>
-          <p>
-            ZeeVeez White Honey Apple gummy snacks are launching soon.<br />
-            Sign up and be the first to get a pouch.
-          </p>
+          <p>Be the first to know when we launch. Drop your email below.</p>
           <div className="cta__form">
             <form onSubmit={handleEmailSubmit} className="cta__form-input">
               <input
@@ -708,9 +696,8 @@ function App() {
             <div className="foot__cols">
               <div className="foot__col">
                 <h4>Product</h4>
-                <a href="#flavor">White Honey Apple</a>
                 <a href="#ingredients">Ingredients</a>
-                <a href="#why">Why ZeeVeez</a>
+                <a href="#about">Why ZeeVeez</a>
                 <a href="#buy">Where to Buy</a>
               </div>
               <div className="foot__col">

@@ -221,12 +221,12 @@
 .btn--ghost:hover { background:rgba(255,255,255,0.9); border-color:var(--green-400); }
 
 /* ═══════════════════════════════════════════════ TICKER ═══════════════════════════════════════════════ */
-.ticker { background:var(--green-500); padding:14px 0; overflow:hidden; white-space:nowrap; }
-.ticker__track { display:flex; animation:tickerScroll 30s linear infinite; width:max-content; }
-.ticker__content { display:flex; align-items:center; gap:28px; padding:0 14px; font-size:14px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:1.5px; }
-.ticker__dot { width:6px; height:6px; background:rgba(255,255,255,0.5); border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
-.ticker__dot--star { width:auto; height:auto; background:none; }
-.ticker__dot--star svg { color:rgba(255,255,255,0.7); }
+.ticker { background:var(--green-500); padding:14px 0; }
+.ticker--static { overflow:visible; }
+.ticker__static-inner { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:16px 24px; padding:0 24px; font-size:13px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:1.5px; }
+.ticker__stat-item { display:flex; align-items:center; gap:8px; }
+.ticker__stat-icon { font-size:18px; line-height:1; }
+.ticker__stat-sep { display:flex; align-items:center; color:rgba(255,255,255,0.45); }
 
 /* ═══════════════════════════════════════════════ SECTION TAG ═══════════════════════════════════════════════ */
 .section-tag { display:inline-block; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--green-600); margin-bottom:14px; position:relative; padding-left:20px; }
@@ -269,6 +269,11 @@
 .about__hl strong { display:block; font-size:15px; color:var(--text-dark); }
 .about__hl span { font-size:13px; color:var(--text-light); }
 .texas-star-icon { color:var(--honey); }
+
+/* ── About: Why ZeeVeez grid ── */
+.about__why { max-width:1100px; margin:80px auto 0; padding:0 24px; }
+.about__why-header { text-align:center; margin-bottom:48px; }
+.about__why-header h2 { font-size:clamp(22px, 2.5vw, 34px); font-weight:800; color:var(--text-dark); letter-spacing:-1px; margin-bottom:8px; }
 
 /* ═══════════════════════════════════════════════ GIVES BACK ═══════════════════════════════════════════════ */
 .gives { padding:0 24px 80px 24px; }
