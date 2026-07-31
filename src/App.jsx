@@ -249,12 +249,30 @@ function App() {
           <div className="hero__visual">
             <div className="hero__product-wrap">
               <div className="hero__glow" aria-hidden="true" />
-              <img
-                id="gummy-pouch-img"
-                src="/assets/bag.png"
-                alt="ZeeVeez White Honey Apple Gummy Snacks — 1oz pouch"
-                className="hero__bag-img"
-              />
+              <div className="hero__character">
+                <svg className="hero__char-arm hero__char-arm--left" viewBox="0 0 80 60" aria-hidden="true">
+                  <path d="M72 8 Q 30 4 10 34" stroke="#4d7c2f" strokeWidth="18" strokeLinecap="round" fill="none" />
+                  <circle cx="10" cy="37" r="13" fill="#fbbf24" />
+                </svg>
+                <svg className="hero__char-arm hero__char-arm--right" viewBox="0 0 80 60" aria-hidden="true">
+                  <path d="M8 8 Q 50 4 70 34" stroke="#4d7c2f" strokeWidth="18" strokeLinecap="round" fill="none" />
+                  <circle cx="70" cy="37" r="13" fill="#fbbf24" />
+                </svg>
+                <img
+                  id="gummy-pouch-img"
+                  src="/assets/bag.png"
+                  alt="ZeeVeez White Honey Apple Gummy Snacks — 1oz pouch"
+                  className="hero__bag-img"
+                />
+                <svg className="hero__char-leg hero__char-leg--left" viewBox="0 0 40 70" aria-hidden="true">
+                  <rect x="8" y="0" width="24" height="45" rx="12" fill="#4d7c2f" />
+                  <ellipse cx="20" cy="58" rx="19" ry="11" fill="#1f2937" />
+                </svg>
+                <svg className="hero__char-leg hero__char-leg--right" viewBox="0 0 40 70" aria-hidden="true">
+                  <rect x="8" y="0" width="24" height="45" rx="12" fill="#4d7c2f" />
+                  <ellipse cx="20" cy="58" rx="19" ry="11" fill="#1f2937" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
