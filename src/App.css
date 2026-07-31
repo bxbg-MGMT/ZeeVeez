@@ -111,9 +111,9 @@
 .nav__inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:72px; transition:height .3s; }
 .nav--scrolled .nav__inner { height:60px; }
 .nav__logo { text-decoration:none; display:flex; align-items:center; }
-.nav__logo-img { height:40px; width:auto; transition:opacity .2s; }
+.nav__logo-img { height:48px; width:auto; transition:opacity .2s; }
 .nav__logo-img:hover { opacity:0.85; }
-.nav--scrolled .nav__logo-img { height:34px; }
+.nav--scrolled .nav__logo-img { height:41px; }
 .nav__links { display:flex; align-items:center; gap:32px; }
 .nav__links a { text-decoration:none; color:var(--text-mid); font-size:17px; font-weight:700; transition:color .2s; position:relative; }
 .nav__links a:not(.nav__cta)::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--green-500); border-radius:2px; transition:width .25s ease; }
